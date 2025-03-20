@@ -1,0 +1,14 @@
+
+.App {
+  background-color: white;
+  padding: 16px;
+}
+
+.App.dark {
+  background-color: rgba(15, 18, 20)
+
+}
+
+.App.light {
+  background-color: white;
+}

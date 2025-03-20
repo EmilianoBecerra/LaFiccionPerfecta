@@ -1,0 +1,90 @@
+.movies {
+  padding: 16px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  padding: 10px;
+  margin-bottom: 30px;
+  grid-gap: 5px;
+  background-color: inherit;
+}
+
+.introduction {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.introduction h2 {
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.introduction p {
+  margin-top: 5px;
+  font-size: 0.6rem;
+  text-align: center;
+  width: 60%;
+}
+
+.posterMovie {
+  transition: border 50ms;
+  border-radius: 10px;
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.posterMovie img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.movies.light .posterMovie {}
+
+.movies.dark .posterMovie {}
+
+.dark .MuiPagination-root button {
+  color: white;
+}
+
+.dark .MuiPagination-root li div {
+  color: white;
+}
+
+@media only screen and (min-width: 750px) {
+  .movies {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .movies {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .movies {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .posterMovie:hover {
+    border-radius: 8px;
+    border: 3px solid blueviolet;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
