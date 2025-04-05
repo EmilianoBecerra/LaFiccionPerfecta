@@ -1,11 +1,14 @@
 import axios from "axios";
 
-
 export const searchMovie = async (inputValue, page) => {
-
-  try{
-    const response = await axios.get(`
-      ${process.env.REACT_APP_API_URL}/search/movie?query=${inputValue}&include_adult=true&language=en-US&page=${page || 1}`,
+  try {
+    const response = await axios.get(
+      `
+      ${
+        process.env.REACT_APP_API_URL
+      }/search/movie?query=${inputValue}&include_adult=false&language=en-US&page=${
+        page || 1
+      }`,
       {
         headers: {
           accept: "application/json",
@@ -13,10 +16,8 @@ export const searchMovie = async (inputValue, page) => {
         },
       }
     );
-
     return response.data;
-    
-  } catch(error) {
-    console.log("Error al buscar peliculas", error)
+  } catch (error) {
+    console.log("Error al buscar peliculas", error);
   }
 };

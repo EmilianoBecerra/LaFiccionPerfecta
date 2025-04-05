@@ -2,13 +2,16 @@ import "./index.css";
 import "./App.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Footer from "./components/Footer";
+import { Route, Routes, } from "react-router";
+import Movie from "./components/Movie";
+import Post from "./components/Post";
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const [searchedMovie, setSearchedMovie] = useState("");
-  const searchedMovieRef = useRef("");
+  const [discussion, setDiscussion] = useState(undefined);
+
 
   const handleData = (childData) => {
     setTheme(childData);
@@ -18,15 +21,25 @@ function App() {
     <div className={`App ${theme}`}>
       <Header
         sendData={handleData}
-        searchedMovie={searchedMovie}
-        setSearchedMovie={setSearchedMovie}
-        searchedMovieRef={searchedMovieRef}
       />
-      <Main
-        themeStyle={theme}
-        searchedMovie={searchedMovie}
-        searchedMovieRef={searchedMovieRef}
-      />
+      <Routes>
+        <Route path={"/"} element={
+          <Main
+            themeStyle={theme}
+          />} />
+        <Route
+          path={"/movie/:id"}
+          element={
+            <Movie setDiscussion={setDiscussion} />
+          }
+        />
+        <Route
+          path={"/discussion/:id"}
+          element={
+            <Post discussion={discussion} />
+          }
+        />
+      </Routes>
       <Footer />
     </div>
   );

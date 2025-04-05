@@ -1,11 +1,8 @@
-import "../App.css";
 import "./Header.css";
-import "../index.css";
+import { Link } from "react-router";
 
 export default function Header({
   sendData,
-  setSearchedMovie,
-  searchedMovieRef,
 }) {
   const storage = window.localStorage;
   const theme = storage.getItem("theme") || "light";
@@ -15,42 +12,22 @@ export default function Header({
     storage.setItem("theme", newTheme);
     sendData(newTheme);
   };
-
-  const handleInput = (e) => {
-    const movieName = e.target.value;
-    searchedMovieRef.current = movieName;
-    setSearchedMovie(movieName);
-  };
-
   return (
     <header>
+      <Link to={"/"} className="Link">
+        <h1 className={`${theme}`}>
+          LaFiccionPerfecta
+        </h1>
+      </Link>
       <img
-        src={theme === "light" ? "./img/sol.png" : "./img/luna.png"}
+        src={theme === "light" ? "/img/luna.png" : "/img/sol.png"}
         alt={theme === "light" ? "icono tema claro" : "icono tema oscuro"}
         className="iconoTema mostrar"
         id="temaClaro"
-        width="32"
-        height="32"
+        width="24"
+        height="24"
         onClick={handleTheme}
       />
-      <h1 className={`${theme}`}>
-        <p>La </p>
-        <p>Ficción</p>
-        <p>Perfecta</p>
-      </h1>
-      <div className="divSearch">
-        <label htmlFor="search">
-          Buscar
-          <input
-            className="inputSearch"
-            id="search"
-            name="inputSearch"
-            type="text"
-            defaultValue={""}
-            onChange={handleInput}
-          />
-        </label>
-      </div>
     </header>
   );
 }

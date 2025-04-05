@@ -1,0 +1,96 @@
+{
+  "discussions": [
+    {
+      "idMovie": "1125899",
+      "topics": [
+        {
+          "topicId": "1",
+          "title": "Final inesperado",
+          "message": "No me esperaba ese giro al final, ¿qué opinan?",
+          "timestamp": "2025-04-04T12:00:00Z",
+          "responses": [
+            {
+              "responseId": "1-1",
+              "user": "Ana",
+              "message": "¡Totalmente de acuerdo! Me sorprendió.",
+              "timestamp": "2025-04-04T12:10:00Z"
+            },
+            {
+              "responseId": "1-2",
+              "user": "Carlos",
+              "message": "A mí me pareció predecible 😅",
+              "timestamp": "2025-04-04T12:15:00Z"
+            },
+            {
+              "responseId": "1-1743799594798",
+              "user": "Pedro",
+              "message": "Interesante punto de vista",
+              "timeStamp": "2025-04-04T20:46:34.798Z"
+            },
+            {
+              "responseId": "1-1743799691254",
+              "user": "Carlo",
+              "message": "Tu señora ta re wena",
+              "timeStamp": "2025-04-04T20:48:11.254Z"
+            }
+          ]
+        },
+        {
+          "topicId": "2",
+          "user": "María",
+          "title": "Opiniones sobre el soundtrack",
+          "message": "La música me pareció muy buena, ¿ustedes qué piensan?",
+          "timestamp": "2025-04-04T13:00:00Z",
+          "responses": []
+        },
+        {
+          "topicId": "1743799403429",
+          "title": "Nueva Teoria",
+          "message": "Creo que el villano no era tan malo",
+          "timeStamp": "2025-04-04T20:43:23.429Z",
+          "responses": []
+        },
+        {
+          "topicId": "1743799660000",
+          "title": "Mi señora dice que ta wena eta pelicula",
+          "message": "Nada para agregar al titulo",
+          "timeStamp": "2025-04-04T20:47:40.000Z",
+          "responses": [
+            {
+              "responseId": "1743799660000-1743799706355",
+              "user": "Carlo",
+              "message": "Tu señora ta re wena",
+              "timeStamp": "2025-04-04T20:48:26.355Z"
+            }
+          ]
+        },
+        {
+          "topicId": "1743801056284",
+          "title": "Mi señora dice que ta wena eta pelicula",
+          "message": "Nada para agregar al titulo",
+          "timestamp": "2025-04-04T21:10:56.284Z",
+          "response": [
+            {
+              "responseId": "1743801056284-1743801106345",
+              "user": "Carlo",
+              "message": "Tu señora ta re wena",
+              "timestamp": "2025-04-04T21:11:46.345Z"
+            },
+            {
+              "responseId": "1743801056284-1743801109328",
+              "user": "Carlo",
+              "message": "Tu señora ta re wena",
+              "timestamp": "2025-04-04T21:11:49.328Z"
+            },
+            {
+              "responseId": "1743801056284-1743801111751",
+              "user": "Carlo",
+              "message": "Tu señora ta re wena",
+              "timestamp": "2025-04-04T21:11:51.751Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

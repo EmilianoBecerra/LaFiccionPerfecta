@@ -1,0 +1,37 @@
+.Discussion {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.header_discussions {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_discussions h2 {
+  font-size: var(--font-subTitle-size-mobile);
+}
+
+.header_discussions button {
+  padding: 0 16px;
+  background-color: rgb(255, 115, 0);
+  border: none;
+  border-radius: var(--button-border-radius);
+}
+
+.discussion_box {
+  border: var( --border-white);
+  padding: 8px;
+  font-size: var(--font-text-size-mobile);
+  margin: 4px 0px;
+  border-radius: var(--button-border-radius);
+}
+
+.light .discussion_box {
+  border: var(--border-black);
+}
+
+.discussion_box p {
+  margin-top: 4px;
+}

@@ -1,0 +1,55 @@
+main {
+  min-height: 100vh;
+}
+
+.Movie {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.Movie img {
+  width: 13rem;
+  height: 20rem;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.infoMovie {
+  display: flex;
+}
+
+.h2 {
+  font-size: var(--font-subTitle-size-mobile);
+}
+
+.overview p {
+  margin-top: 4px;
+  font-size: var(--font-text-size-mobile);
+}
+
+.overview p span {
+  color: rgba(0, 119, 255, 0.781);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.infoPersons {
+  height: 10rem;
+  margin: 4px;
+  border-radius: 4px;
+}
+
+.infoPersons ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 4px;
+  border-bottom: 1px solid white;
+}
+
+.infoPersons ul li {
+  font-size: var(--font-text-size-mobile);
+  color: rgb(0, 197, 0);
+  font-weight: 600;
+}

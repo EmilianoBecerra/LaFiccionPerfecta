@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getMovies } from "../services/servicesMovies.js";
 import "./Main.css";
 import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import { useGetSearchedMovies } from "../hooks/useGetSearchedMovies.js";
 import { Skeleton } from "@mui/material";
+import { Link, useNavigate } from "react-router";
 
-export default function Main({ themeStyle, searchedMovieRef, searchedMovie }) {
+export default function Main({
+  themeStyle,
+}) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,6 +17,10 @@ export default function Main({ themeStyle, searchedMovieRef, searchedMovie }) {
   const [page, setPage] = useState(1);
   const [infoPages, setInfoPages] = useState(1);
   const eskeletonNum = [...Array(20).keys()];
+  const [searchedMovie, setSearchedMovie] = useState("");
+  const searchedMovieRef = useRef("");
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -52,61 +59,73 @@ export default function Main({ themeStyle, searchedMovieRef, searchedMovie }) {
     setLoadedImages((prev) => ({ ...prev, [id]: true }));
   };
 
+  const handleInput = (e) => {
+    const movieName = e.target.value;
+    searchedMovieRef.current = movieName;
+    setSearchedMovie(movieName);
+  };
+
   return (
-    <main>
-      <div className="introduction">
-        <h2>Donde el debate por el cine sucede </h2>
-        <p>
-          Busca la pelicula que deseen debatir, abrí un nuevo tema de discusión
-          y contanos tus teorías, conspiraciones o sentimientos que te produjo
-        </p>
-      </div>
+    <main className="Main">
+      <hr />
+      <input
+        className="inputSearch"
+        id="search"
+        name="inputSearch"
+        type="text"
+        maxLength={20}
+        max={2}
+        defaultValue={""}
+        onChange={handleInput}
+      />
+      <h2>Donde el debate por el cine sucede </h2>
+      <p>
+        Busca la pelicula que desees debatir, abrí un nuevo tema de discusión
+        y contanos tus teorías, inquietudes o los sentimientos que te produjo.
+      </p>
       <div className={`movies ${themeStyle}`}>
         {loading
           ? eskeletonNum.map((skeletonIndex) => {
-              return (
-                <Skeleton
-                  key={skeletonIndex}
-                  variant="rectangle"
-                  height={120}
-                  width={80}
-                />
-              );
-            })
+            return (
+              <Skeleton
+                key={skeletonIndex}
+                variant="rounded"
+                height={400}
+                width={300}
+              />
+            );
+          })
           : movies.map((movie) => {
-              return (
-                <a
-                  href={`${movie.id}`}
-                  key={movie.id}
-                  className={`posterMovie`}
-                >
-                  {!loadedImages[movie.id] && (
-                    <Skeleton variant="rectangle" height={133} width={84} />
-                  )}
-                  <img
-                    src={
-                      movie.poster_path === null
-                        ? "./img/imgnull.webp"
-                        : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                    }
-                    alt={`imagen pelicula ${movie.original_title}`}
-                    onLoad={() => handleImageLoad(movie.id)}
-                    style={{
-                      display: !loadedImages[movie.id] ? "none" : "block",
-                    }}
-                  />
-                </a>
-              );
-            })}
+            return (
+              <Link to={`/movie/${movie.id}`} key={movie.id}>
+                {!loadedImages[movie.id] && (
+                  <Skeleton variant="rectangle" height={133} width={84} />
+                )}
+                <img
+                  src={
+                    movie.poster_path === null
+                      ? "./img/imgnull.webp"
+                      : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                  }
+                  className="posterMovie"
+                  alt={`imagen pelicula ${movie.original_title}`}
+                  onLoad={() => handleImageLoad(movie.id)}
+                  style={{
+                    display: !loadedImages[movie.id] ? "none" : "block",
+                  }}
+                />
+              </Link>
+            );
+          })}
       </div>
       <Pagination
         count={infoPages > 500 ? 500 : infoPages}
         page={page}
         color="primary"
         variant="text"
-        className="dark"
+        className="pagination"
         onChange={handlePagination}
       />
-    </main>
+    </main >
   );
 }
