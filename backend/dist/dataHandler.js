@@ -8,11 +8,17 @@ const node_fs_1 = __importDefault(require("node:fs"));
 const node_path_1 = __importDefault(require("node:path"));
 const DB_PATH = node_path_1.default.join(__dirname, "../data/db.json");
 const readDB = async () => {
-    const data = await node_fs_1.default.promises.readFile(DB_PATH, "utf-8");
-    return JSON.parse(data);
+    try {
+        const data = await node_fs_1.default.promises.readFile(DB_PATH, "utf-8");
+        return JSON.parse(data);
+    }
+    catch (error) {
+        console.log(error);
+        console.log("error db");
+    }
 };
 exports.readDB = readDB;
-const writeDB = (data) => {
+const writeDB = async (data) => {
     node_fs_1.default.promises.writeFile(DB_PATH, JSON.stringify(data, null, 2));
 };
 exports.writeDB = writeDB;

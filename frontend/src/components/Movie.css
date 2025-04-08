@@ -34,7 +34,7 @@ main {
 }
 
 .infoPersons {
-  height: 10rem;
+  min-height: 10rem;
   margin: 4px;
   border-radius: 4px;
 }
@@ -50,6 +50,16 @@ main {
 
 .infoPersons ul li {
   font-size: var(--font-text-size-mobile);
-  color: rgb(0, 197, 0);
+  color: var(--verde-oscuro);
   font-weight: 600;
+  cursor: pointer;
+}
+
+.infoPersons ul li:hover {
+  color: var(--verde-claro);
+}
+
+
+.detailMovie {
+  max-height: 100%;
 }

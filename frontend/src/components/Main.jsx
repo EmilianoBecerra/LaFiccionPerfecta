@@ -90,8 +90,8 @@ export default function Main({
               <Skeleton
                 key={skeletonIndex}
                 variant="rounded"
-                height={400}
-                width={300}
+                height={133}
+                width={84}
               />
             );
           })
@@ -99,7 +99,7 @@ export default function Main({
             return (
               <Link to={`/movie/${movie.id}`} key={movie.id}>
                 {!loadedImages[movie.id] && (
-                  <Skeleton variant="rectangle" height={133} width={84} />
+                  <Skeleton variant="rectangle" height={133} width={84}  animatio={"wave"}/>
                 )}
                 <img
                   src={

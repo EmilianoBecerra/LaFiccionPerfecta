@@ -6,22 +6,18 @@ export const useGetSearchedMovies = ({
   searchedMovie,
   setMovies,
   setInfoPages,
-  page
+  page,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    
     setTimeout(() => {
       if (
         searchedMovieRef.current !== "" &&
         searchedMovieRef.current === searchedMovie
-      ) 
-      {
-
+      ) {
         const fetchSearchedMovies = async () => {
-
           try {
             setIsLoading(true);
             const response = await searchMovie(searchedMovie, page);
@@ -37,8 +33,7 @@ export const useGetSearchedMovies = ({
         fetchSearchedMovies();
       }
     }, 2000);
-
-  }, [searchedMovie, searchedMovieRef, setMovies, setInfoPages,page]);
+  }, [searchedMovie, searchedMovieRef, setMovies, setInfoPages, page]);
 
   return { isLoading, isError, setInfoPages };
 };

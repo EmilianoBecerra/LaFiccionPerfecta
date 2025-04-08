@@ -16,7 +16,7 @@
 }
 
 .Main input {
-  width: 90%;
+  width: 60%;
   height: 1.8rem;
   border-radius: 5px;
   font-size: var(--font-text-size-mobile);
@@ -26,7 +26,7 @@
 }
 
 .Main input:focus {
-  outline: 2px solid var(--violeta-oscuro);
+  outline: 2px solid var(--verde-oscuro);
 }
 
 .Main h2 {
@@ -80,6 +80,11 @@
 
 .dark .MuiPagination-root li div {
   color: white;
+}
+
+.Skeleton {
+  background-color: red;
+  animation-name: fadeIn;
 }
 
 @media only screen and (min-width: 750px) and (max-width: 1024px) {

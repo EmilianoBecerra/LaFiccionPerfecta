@@ -1,10 +1,9 @@
 .Discussion {
   width: 100%;
-  margin-top: 20px;
 }
 
 .header_discussions {
-  padding: 10px 0;
+  padding: 10px 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -21,7 +20,7 @@
 }
 
 .discussion_box {
-  border: var( --border-white);
+  border: var(--border-white);
   padding: 8px;
   font-size: var(--font-text-size-mobile);
   margin: 4px 0px;
@@ -34,4 +33,11 @@
 
 .discussion_box p {
   margin-top: 4px;
+}
+
+
+.formComment {
+  display: flex;
+  flex-flow: column nowrap;
+
 }

@@ -12,8 +12,8 @@
   --font-text: "Poppins", sans-serif;
   --font-title-size: 1.4rem;
   --font-title: "Merriweather", serif;
-  --violeta-claro: rgb(141, 126, 177);
-  --violeta-oscuro: rgb(105, 59, 223);
+  --verde-claro: rgb(46, 255, 46);
+  --verde-oscuro: rgb(0, 177, 0);
 }
 
 * {
