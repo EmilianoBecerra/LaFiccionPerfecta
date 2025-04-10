@@ -1,13 +1,26 @@
 import { Request, Response, Router } from "express";
-import { readDB, writeDB } from "./dataHandler";
 import { MovieDiscussion, Topic, ResponseData, DB } from "./interface";
 import { v4 as uuidv4 } from 'uuid';
-import { write } from "fs";
+import pool from "./db";
 
 
 export const router = Router();
 
 
+router.get("/movies/:id/topics", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const topics = await pool.execute("SELECT * FROM topics WHERE movie_ID = ?", [id]);
+    res.status(200).json(topics);
+  } catch(err) {
+    console.error("Error en la consulta");
+    res.status(500).json({ error: "Ocurrió un error al hacer la consulta" });
+  }
+})
+
+
+
+/*
 router.get("/movies/:id/discussions", async (req: any, res: any, next) => {
   const { id } = req.params;
   try {
@@ -103,3 +116,4 @@ router.post("/movies/:id/discussions/:topicId/responses", async (req: any, res: 
   res.status(201).json(newResponse);
 
 })
+ */
