@@ -5,7 +5,7 @@ import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import { useGetSearchedMovies } from "../hooks/useGetSearchedMovies.js";
 import { Skeleton } from "@mui/material";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation } from "react-router";
 
 export default function Main({
   themeStyle,
@@ -19,8 +19,6 @@ export default function Main({
   const eskeletonNum = [...Array(20).keys()];
   const [searchedMovie, setSearchedMovie] = useState("");
   const searchedMovieRef = useRef("");
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -51,6 +49,7 @@ export default function Main({
   const handlePagination = (e, newPage) => {
     setPage(newPage);
   };
+
   if (isError) {
     return <p className="error-message">No se encontraron películas</p>;
   }
@@ -97,9 +96,9 @@ export default function Main({
           })
           : movies.map((movie) => {
             return (
-              <Link to={`/movie/${movie.id}`} key={movie.id}>
+              <Link to={`/pelicula/${movie.id}`} key={movie.id}>
                 {!loadedImages[movie.id] && (
-                  <Skeleton variant="rectangle" height={133} width={84}  animatio={"wave"}/>
+                  <Skeleton variant="rectangle" height={133} width={84} animatio={"wave"} />
                 )}
                 <img
                   src={

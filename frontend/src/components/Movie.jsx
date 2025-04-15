@@ -3,8 +3,8 @@ import { useParams } from "react-router";
 import findIdMovie from "../services/findIdMovie"
 import { useEffect, useState } from "react";
 import newMovieDetail from "../services/newMovieDetail";
-import getDiscussions from "../services/getDiscussions"
-import Discussions from "./Discussions";
+import getTopics from "../services/getTopics"
+import Temas from "./Temas";
 import { Skeleton } from "@mui/material";
 import Cast from "./Cast";
 import Crew from "./Crew";
@@ -12,7 +12,7 @@ import Detail from "./Detail";
 import Genred from "./Genred";
 
 
-const Movie = ({ setDiscussion }) => {
+const Movie = ({ setDiscussion, setNameMovie }) => {
   const params = useParams();
   const [movie, setMovie] = useState({});
   const [movieDetail, setMovieDetail] = useState({});
@@ -27,7 +27,7 @@ const Movie = ({ setDiscussion }) => {
       try {
         const data = await findIdMovie(params.id);
         const dataDetail = await newMovieDetail(params.id);
-        const discussionsMovie = await getDiscussions(params.id);
+        const discussionsMovie = await getTopics(params.id);
         setMovie(data);
         setMovieDetail(dataDetail);
         setComments(discussionsMovie);
@@ -39,9 +39,11 @@ const Movie = ({ setDiscussion }) => {
       }
     }
     fetchMovie();
-
-
   }, [])
+
+  useEffect(() => {
+    setNameMovie(movie?.title);
+  }, [movie])
 
   const handleClick = (value) => {
     setTypeInfoMovie(value);
@@ -74,7 +76,6 @@ const Movie = ({ setDiscussion }) => {
         </>
         :
         <>
-
           <section className="Movie">
             <img src={
               movie.poster_path === null
@@ -116,7 +117,7 @@ const Movie = ({ setDiscussion }) => {
               }
             </div>
           </div>
-          <Discussions comments={comments} />
+          <Temas comments={comments} />
         </>
       }
     </main>

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useFetcher } from "react-router";
+import { useState } from "react";
+
 
 const NewDiscussion = ({ id, handleClose }) => {
   const [title, setTitle] = useState("");
@@ -8,11 +8,11 @@ const NewDiscussion = ({ id, handleClose }) => {
 
   const handleForm = (e) => {
     e.preventDefault();
-    let url = `http://localhost:3000/api/movies/${id}/discussions`;
+    let url = `http://localhost:3000/api/peliculas/${id}/temas`;
 
     axios.post(url, {
-      title: title,
-      message: message
+      titulo: title,
+      descripcion: message
     })
       .then(function (response) {
         console.log(response)
@@ -33,6 +33,4 @@ const NewDiscussion = ({ id, handleClose }) => {
 
   )
 }
-
-
 export default NewDiscussion;

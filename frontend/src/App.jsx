@@ -4,14 +4,17 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import { useState } from "react";
 import Footer from "./components/Footer";
-import { Route, Routes, } from "react-router";
+import { Link, Route, Routes, useLocation, } from "react-router";
 import Movie from "./components/Movie";
 import Post from "./components/Post";
+import Breadcrumbs from "./components/Breadcrumbs";
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [discussion, setDiscussion] = useState(undefined);
-
+  const [nameMovie, setNameMovie] = useState("");
+  const location = useLocation();
+  const [topicName, setTopicName] = useState("")
 
   const handleData = (childData) => {
     setTheme(childData);
@@ -22,21 +25,22 @@ function App() {
       <Header
         sendData={handleData}
       />
+      <Breadcrumbs namemovie ={nameMovie} pathname={location.pathname} topicName={topicName}/>
       <Routes>
         <Route path={"/"} element={
           <Main
             themeStyle={theme}
           />} />
         <Route
-          path={"/movie/:id"}
+          path={"/pelicula/:id"}
           element={
-            <Movie setDiscussion={setDiscussion} />
+            <Movie setDiscussion={setDiscussion} setNameMovie={setNameMovie} />
           }
         />
         <Route
-          path={"/discussion/:id"}
+          path={"/tema/:id"}
           element={
-            <Post discussion={discussion} />
+            <Post discussion={discussion} setTopicName={setTopicName}/>
           }
         />
       </Routes>

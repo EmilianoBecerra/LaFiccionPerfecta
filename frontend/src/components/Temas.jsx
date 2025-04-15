@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router";
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import "./Discussions.css";
+import "./Temas.css";
 import NewDiscussion from "./NewDiscussion";
 
 const style = {
@@ -19,7 +19,7 @@ const style = {
   pb: 3,
 };
 
-const Discussions = ({ comments }) => {
+const Temas = ({ comments }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -33,8 +33,8 @@ const Discussions = ({ comments }) => {
   return (
     <section className="Discussion">
       <div className="header_discussions">
-        <h2> 🗣️Discusiones</h2>
-        <button onClick={handleOpen}>+</button>
+        <h2> 🗣️Temas</h2>
+        <button onClick={handleOpen}>Nuevo Tema</button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -42,25 +42,23 @@ const Discussions = ({ comments }) => {
           aria-describedby="parent-modal-description"
         >
           <Box sx={{ ...style, width: 400 }}>
-            <NewDiscussion id={id} handleClose={handleClose}/>
+            <NewDiscussion id={id} handleClose={handleClose} />
           </Box>
         </Modal>
       </div>
       {
-        comments === "" ? <p>"No hay comentarios"</p> :
+        comments?.length === 0 || !comments ? <p className="noComments">No hay comentarios</p> :
           comments?.map((discussion, index) => (
-            <Link to={`/discussion/${discussion.topicId}`} style={{ textDecoration: "none", color: "inherit" }} key={index}>
+            <Link to={`/tema/${discussion._id}`} style={{ textDecoration: "none", color: "inherit" }} key={index}>
               <article className="discussion_box" >
-                <h5>{discussion.title}</h5>
-                <p>{discussion?.message?.slice(0, 200)}...</p>
+                <h5>{discussion.titulo}</h5>
+                <p>{discussion?.descripcion}</p>
               </article>
             </Link>
           ))
       }
-
-
     </section>
   )
 }
 
-export default Discussions;
+export default Temas;

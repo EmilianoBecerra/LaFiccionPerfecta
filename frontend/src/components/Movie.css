@@ -50,13 +50,16 @@ main {
 
 .infoPersons ul li {
   font-size: var(--font-text-size-mobile);
-  color: var(--verde-oscuro);
   font-weight: 600;
   cursor: pointer;
 }
 
+.infoPersons ul li:target {
+  color: var(--color-orange);
+}
+
 .infoPersons ul li:hover {
-  color: var(--verde-claro);
+  color: var(--color-orange);
 }
 
 

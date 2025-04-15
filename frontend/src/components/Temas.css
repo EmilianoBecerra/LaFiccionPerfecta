@@ -14,8 +14,10 @@
 
 .header_discussions button {
   padding: 0 16px;
-  background-color: rgb(255, 115, 0);
+  background-color: var(--color-orange);
   border: none;
+  font-weight: bold;
+  color: white;
   border-radius: var(--button-border-radius);
 }
 
@@ -39,5 +41,14 @@
 .formComment {
   display: flex;
   flex-flow: column nowrap;
+}
 
+.noComments {
+  justify-self: center;
+  text-align: center;
+  margin-top: 10px;
+  background-color: var(--color-text-error);
+  width: 70%;
+  border-radius: 4px;
+  padding: 4px;
 }

@@ -1,12 +1,13 @@
 .castInfo {
   padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .castInfo .personName {
   font-size: var(--font-text-size-mobile);
   padding: 3px;
   margin: 2px;
-  border: 1px solid black;
   background-color: rgba(128, 128, 128, 0.205);
   border-radius: 3px;
   cursor: pointer;
@@ -14,4 +15,5 @@
 
 .dark .castInfo p {
   background-color: rgba(226, 226, 226, 0.205);
+
 }

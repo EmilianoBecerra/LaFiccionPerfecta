@@ -1,0 +1,14 @@
+.focusSpan {
+  color: var(--color-orange);
+}
+
+.Breadcrumbs p {
+  font-size: var(--font-text-size-mobile);
+}
+
+.Breadcrumbs .LINK {
+  font-size: var(--font-text-size-mobile);
+  text-decoration: none;
+  color: white;
+}
+

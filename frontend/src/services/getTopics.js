@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const getDiscussions = async (movieId) => {
+const getTopics = async (movieId) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/movies/${movieId}/topics`
+      `http://localhost:3000/api/peliculas/${movieId}/temas`
     );
     return response.data;
   } catch (error) {
@@ -11,4 +11,4 @@ const getDiscussions = async (movieId) => {
   }
 };
 
-export default getDiscussions;
+export default getTopics;
