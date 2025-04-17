@@ -34,7 +34,7 @@ function App() {
         <Route
           path={"/pelicula/:id"}
           element={
-            <Movie setDiscussion={setDiscussion} setNameMovie={setNameMovie} />
+            <Movie setDiscussion={setDiscussion} theme={theme} setNameMovie={setNameMovie} />
           }
         />
         <Route

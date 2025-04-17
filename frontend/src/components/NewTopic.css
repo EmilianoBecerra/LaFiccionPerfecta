@@ -1,0 +1,58 @@
+.formTopic {
+  height: 100%;
+}
+
+.formTopic form {
+  max-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+hr {
+  margin: 5px 0px 10px 0px;
+}
+
+form input {
+  border-radius: var(--button-border-radius);
+  outline-color: var(--color-orange);
+  padding: 5px;
+  border: var(--border-black);
+  margin: 2px 0px 2px 0px;
+}
+
+form textarea {
+  border-radius: var(--button-border-radius);
+  outline-color: var(--color-orange);
+  padding: 5px;
+  border: var(--border-black);
+  margin: 2px 0px 2px 0px;
+  resize: none;
+  height: 230px;
+}
+
+.dark form input {
+  background-color: black;
+  border: var(--border-white);
+  color: white;
+}
+
+.dark form textarea {
+  background-color: black;
+  border: var(--border-white);
+  color: white;
+}
+
+form button {
+  background-color: var(--color-orange);
+  color: black;
+  font-size: var(--font-text-size-mobile);
+  padding: 5px;
+  border-radius: var(--button-border-radius);
+  margin-top: 4px;
+  font-weight: bold;
+  border: var(--border-white);
+}
+
+.dark form button {
+  color: white;
+}

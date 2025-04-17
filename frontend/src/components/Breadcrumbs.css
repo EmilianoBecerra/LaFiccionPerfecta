@@ -1,7 +1,9 @@
 .focusSpan {
   color: var(--color-orange);
 }
-
+.Breadcrumbs {
+  padding: 0px 10px;
+}
 .Breadcrumbs p {
   font-size: var(--font-text-size-mobile);
 }
@@ -12,3 +14,10 @@
   color: white;
 }
 
+.Breadcrumbs .LINK.focusSpan {
+  color: var(--color-orange);
+}
+
+.light .Breadcrumbs .LINK {
+  color: black;
+}

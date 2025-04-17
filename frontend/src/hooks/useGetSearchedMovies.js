@@ -32,7 +32,7 @@ export const useGetSearchedMovies = ({
 
         fetchSearchedMovies();
       }
-    }, 2000);
+    }, 500);
   }, [searchedMovie, searchedMovieRef, setMovies, setInfoPages, page]);
 
   return { isLoading, isError, setInfoPages };

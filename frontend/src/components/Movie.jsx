@@ -4,7 +4,7 @@ import findIdMovie from "../services/findIdMovie"
 import { useEffect, useState } from "react";
 import newMovieDetail from "../services/newMovieDetail";
 import getTopics from "../services/getTopics"
-import Temas from "./Temas";
+import Topics from "./Topics";
 import { Skeleton } from "@mui/material";
 import Cast from "./Cast";
 import Crew from "./Crew";
@@ -12,7 +12,7 @@ import Detail from "./Detail";
 import Genred from "./Genred";
 
 
-const Movie = ({ setDiscussion, setNameMovie }) => {
+const Movie = ({ setDiscussion, setNameMovie, theme }) => {
   const params = useParams();
   const [movie, setMovie] = useState({});
   const [movieDetail, setMovieDetail] = useState({});
@@ -69,14 +69,14 @@ const Movie = ({ setDiscussion, setNameMovie }) => {
     }
   }
   return (
-    <main>
+    <main className="Movie">
       {loading ?
         <>
           <Skeleton width={208} height={324} variant="rectangular" className="skeleton" sx={{ display: "flex" }} />
         </>
         :
         <>
-          <section className="Movie">
+          <section className="movie">
             <img src={
               movie.poster_path === null
                 ? "./img/imgnull.webp"
@@ -117,7 +117,7 @@ const Movie = ({ setDiscussion, setNameMovie }) => {
               }
             </div>
           </div>
-          <Temas comments={comments} />
+          <Topics comments={comments} theme={theme} />
         </>
       }
     </main>

@@ -1,8 +1,8 @@
 import { Link, useLocation, useParams } from "react-router"
 import "../components/Breadcrumbs.css"
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
-const Breadcrumbs = ({ namemovie, pathname, topicName }) => {
+const Breadcrumbs = ({ namemovie, topicName }) => {
   const location = useLocation();
   const [id, setId] = useState("");
   useEffect(() => {
@@ -14,14 +14,38 @@ const Breadcrumbs = ({ namemovie, pathname, topicName }) => {
     }
   }, [location.pathname])
 
+
   const switchPathname = () => {
     switch (true) {
-      case pathname === "/":
-        return <Link to={"/"} className="LINK"><span className="focusSpan">Inicio</span></Link>
-      case pathname.includes("/pelicula"):
-        return <p><Link to={"/"} className="LINK" >Inicio</Link> {`>`} <span className="focusSpan">{namemovie}</span></p>;
-      case pathname.includes("/tema"):
-        return <p><Link to={"/"} className="LINK"><span>Inicio</span></Link> {'>'} <Link to={`/pelicula/${id}`} className="LINK">{namemovie}</Link> {'>'} <span className="focusSpan">{topicName}</span></p>
+      case location.pathname === "/":
+        return (
+          <Link to={"/"} className="LINK focusSpan">
+            Inicio
+          </Link>)
+      case location.pathname.includes("/pelicula"):
+        return (
+          <p>
+            <Link to={"/"} className="LINK" >
+              Inicio
+            </Link> {`>`}
+            <span className="focusSpan">
+              {namemovie !== undefined && namemovie.length > 21 ? `${namemovie.slice(0, 20)}...` : namemovie}
+            </span>
+          </p>
+        );
+      case location.pathname.includes("/tema"):
+        return (
+          <p>
+            <Link to={"/"} className="LINK">
+              Inicio
+            </Link> {'>'}
+            <Link to={`/pelicula/${id}`} className="LINK">
+              {namemovie !== undefined && namemovie.length > 21 ? `${namemovie.slice(0, 20)}...` : namemovie}
+            </Link> {'>'}
+            <span className="focusSpan">
+               {topicName !== undefined && topicName.length > 21 ? `${topicName.slice(0, 20)}...` : topicName}
+            </span>
+          </p>)
       default:
         return "default"
 
