@@ -1,18 +1,21 @@
 import "./Movie.css";
 import { useParams } from "react-router";
-import findIdMovie from "../services/findIdMovie"
-import { useEffect, useState } from "react";
-import newMovieDetail from "../services/newMovieDetail";
-import getTopics from "../services/getTopics"
+import findIdMovie from "../../services/findIdMovie"
+import { useContext, useEffect, useState } from "react";
+import newMovieDetail from "../../services/newMovieDetail";
+import getTopics from "../../services/getTopics"
 import Topics from "./Topics";
 import { Skeleton } from "@mui/material";
 import Cast from "./Cast";
 import Crew from "./Crew";
 import Detail from "./Detail";
 import Genred from "./Genred";
+import { TopicContext } from "../../context/StorageContexto";
 
 
-const Movie = ({ setDiscussion, setNameMovie, theme }) => {
+
+const Movie = ({ theme }) => {
+  sessionStorage.removeItem("topicName");
   const params = useParams();
   const [movie, setMovie] = useState({});
   const [movieDetail, setMovieDetail] = useState({});
@@ -21,17 +24,19 @@ const Movie = ({ setDiscussion, setNameMovie, theme }) => {
   const [typeInfoMovie, setTypeInfoMovie] = useState("crew");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { setSelectedMovieId } = useContext(TopicContext);
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
         const data = await findIdMovie(params.id);
         const dataDetail = await newMovieDetail(params.id);
-        const discussionsMovie = await getTopics(params.id);
+        const topicsMovie = await getTopics(params.id);
         setMovie(data);
         setMovieDetail(dataDetail);
-        setComments(discussionsMovie);
-        setDiscussion(discussionsMovie);
+        setComments(topicsMovie);
+        setSelectedMovieId(data.id);
+        sessionStorage.setItem("movieName", data.title)
       } catch (err) {
         console.log(err);
       } finally {
@@ -39,11 +44,8 @@ const Movie = ({ setDiscussion, setNameMovie, theme }) => {
       }
     }
     fetchMovie();
-  }, [])
 
-  useEffect(() => {
-    setNameMovie(movie?.title);
-  }, [movie])
+  }, [params.id])
 
   const handleClick = (value) => {
     setTypeInfoMovie(value);
@@ -117,7 +119,7 @@ const Movie = ({ setDiscussion, setNameMovie, theme }) => {
               }
             </div>
           </div>
-          <Topics comments={comments} theme={theme} />
+          <Topics comments={comments} theme={theme} movieid={movie?.id} />
         </>
       }
     </main>

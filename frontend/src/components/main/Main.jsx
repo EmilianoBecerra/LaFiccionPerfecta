@@ -1,15 +1,16 @@
 import { useEffect, useState, useRef } from "react";
-import { getMovies } from "../services/servicesMovies.js";
+import { getMovies } from "../../services/getMovies.js";
 import "./Main.css";
 import * as React from "react";
 import Pagination from "@mui/material/Pagination";
-import { useGetSearchedMovies } from "../hooks/useGetSearchedMovies.js";
+import { useGetSearchedMovies } from "../../hooks/useGetSearchedMovies.js";
 import { Skeleton } from "@mui/material";
 import { Link, useLocation } from "react-router";
 
 export default function Main({
   themeStyle,
 }) {
+  sessionStorage.removeItem("movieName");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

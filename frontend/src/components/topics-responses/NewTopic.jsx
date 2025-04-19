@@ -9,7 +9,6 @@ const NewTopic = ({ id, handleClose }) => {
   const handleForm = (e) => {
     e.preventDefault();
     let url = `http://localhost:3000/api/peliculas/${id}/temas`;
-
     axios.post(url, {
       titulo: title,
       descripcion: message
@@ -22,6 +21,7 @@ const NewTopic = ({ id, handleClose }) => {
     handleClose();
     window.location.reload();
   }
+
   return (
     <div className="formTopic">
       <h4>Nuevo tema</h4>

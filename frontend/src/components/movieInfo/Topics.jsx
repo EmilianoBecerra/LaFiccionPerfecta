@@ -3,9 +3,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import "./Topics.css";
-import NewTopic from "./NewTopic";
+import NewTopic from "../topics-responses/NewTopic";
 
-const Topics = ({ comments, theme }) => {
+const Topics = ({ comments, theme, movieid }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -16,6 +16,7 @@ const Topics = ({ comments, theme }) => {
 
   const location = useLocation();
   const id = location.pathname.split("/")[2];
+
   return (
     <section className="Topics">
       <div className="headerTopics">
@@ -25,8 +26,8 @@ const Topics = ({ comments, theme }) => {
       <section className="topicsBox">
         {
           comments?.length === 0 || !comments ? <p className="noComments">No hay comentarios</p> :
-            comments?.map((discussion, index) => (
-              <Link to={`/tema/${discussion._id}`} style={{ textDecoration: "none", color: "inherit", width: "400px" }} key={index}>
+            comments?.map((discussion) => (
+              <Link to={`/pelicula/${movieid}/tema/${discussion._id}`} style={{ textDecoration: "none", color: "inherit", width: "400px" }} key={discussion._id}>
                 <article className="topicBox" >
                   <section className="titleTopic">
                     <h5>{discussion.titulo}</h5>

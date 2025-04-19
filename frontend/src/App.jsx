@@ -1,31 +1,28 @@
 import "./index.css";
 import "./App.css";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import Header from "./components/header/Header";
+import Main from "./components/main/Main";
 import { useState } from "react";
-import Footer from "./components/Footer";
-import { Link, Route, Routes, useLocation, } from "react-router";
-import Movie from "./components/Movie";
-import Post from "./components/Post";
-import Breadcrumbs from "./components/Breadcrumbs";
+import Footer from "./components/footer/Footer";
+import { Route, Routes } from "react-router";
+import Movie from "./components/movieInfo/Movie";
+import Post from "./components/topics-responses/Post";
+import { TopicContextProvider } from "./context/StorageContexto";
+import Breadcrumbs from "./components/breadcrumbs/Breadcrumbs";
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const [discussion, setDiscussion] = useState(undefined);
-  const [nameMovie, setNameMovie] = useState("");
-  const location = useLocation();
-  const [topicName, setTopicName] = useState("")
-
+  const [movieId, setMovieId] = useState("");
   const handleData = (childData) => {
     setTheme(childData);
   };
-
   return (
     <div className={`App ${theme}`}>
       <Header
         sendData={handleData}
       />
-      <Breadcrumbs namemovie ={nameMovie} pathname={location.pathname} topicName={topicName}/>
+      <TopicContextProvider>
+        <Breadcrumbs/>
       <Routes>
         <Route path={"/"} element={
           <Main
@@ -34,17 +31,18 @@ function App() {
         <Route
           path={"/pelicula/:id"}
           element={
-            <Movie setDiscussion={setDiscussion} theme={theme} setNameMovie={setNameMovie} />
+            <Movie theme={theme}/>
           }
         />
         <Route
-          path={"/tema/:id"}
+          path={"/pelicula/:movieId/tema/:id"}
           element={
-            <Post discussion={discussion} setTopicName={setTopicName}/>
+            <Post/>
           }
         />
       </Routes>
       <Footer />
+      </TopicContextProvider>
     </div>
   );
 }
