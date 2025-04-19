@@ -12,7 +12,7 @@ const crearComentario = async (req, res) => {
   }
 };
 
-const mostrarComentario = async (req, res) => {
+const mostrarComentarios = async (req, res) => {
   try {
     const { id } = req.params;
     const comentarios = await Comentario.find({ temaId: id}).exec();
@@ -22,4 +22,4 @@ const mostrarComentario = async (req, res) => {
   }
 };
 
-export { crearComentario, mostrarComentario };
+export { crearComentario, mostrarComentarios };
