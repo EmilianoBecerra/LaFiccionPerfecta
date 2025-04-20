@@ -1,8 +1,9 @@
 import "./Header.css";
+import React from "react";
 import { Link } from "react-router";
 
-export default function Header({
-  sendData,
+export default function Header ({
+  sendData
 }) {
   const storage = window.localStorage;
   const theme = storage.getItem("theme") || "light";

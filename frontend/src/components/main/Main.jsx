@@ -1,14 +1,13 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { getMovies } from "../../services/getMovies.js";
 import "./Main.css";
-import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import { useGetSearchedMovies } from "../../hooks/useGetSearchedMovies.js";
 import { Skeleton } from "@mui/material";
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 
-export default function Main({
-  themeStyle,
+export default function Main ({
+  themeStyle
 }) {
   sessionStorage.removeItem("movieName");
   const [movies, setMovies] = useState([]);
@@ -39,12 +38,12 @@ export default function Main({
     }
   }, [page]);
 
-  const { isLoading, isError } = useGetSearchedMovies({
+  const { isError } = useGetSearchedMovies({
     searchedMovieRef,
     searchedMovie,
     setMovies,
     setInfoPages,
-    page,
+    page
   });
 
   const handlePagination = (e, newPage) => {
@@ -52,7 +51,7 @@ export default function Main({
   };
 
   if (isError) {
-    return <p className="error-message">No se encontraron películas</p>;
+    return <p className="error-message">${error}</p>;
   }
 
   const handleImageLoad = (id) => {
@@ -111,7 +110,7 @@ export default function Main({
                   alt={`imagen pelicula ${movie.original_title}`}
                   onLoad={() => handleImageLoad(movie.id)}
                   style={{
-                    display: !loadedImages[movie.id] ? "none" : "block",
+                    display: !loadedImages[movie.id] ? "none" : "block"
                   }}
                 />
               </Link>

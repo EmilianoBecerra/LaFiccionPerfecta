@@ -6,7 +6,7 @@ export const useGetSearchedMovies = ({
   searchedMovie,
   setMovies,
   setInfoPages,
-  page,
+  page
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);

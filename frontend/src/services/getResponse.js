@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const findByIdTopic = async (id) => {
+const getResponses = async (id) => {
   try {
     const response = await axios.get(
-      `https://laficcionperfecta.onrender.com/api/peliculas/${id}/temas`,
+      `https://laficcionperfecta.onrender.com/api/temas/${id}/comentarios`,
       {
         headers: {
           accept: "application/json"
@@ -13,8 +13,8 @@ const findByIdTopic = async (id) => {
     return response.data;
   } catch (err) {
     console.log(`Error: ${err.message}`);
-    console.log("No se encontraron temas con es id");
+    console.log(`No se encontraron comentarios con el id ${id}`);
   }
 };
 
-export default findByIdTopic;
+export default getResponses;

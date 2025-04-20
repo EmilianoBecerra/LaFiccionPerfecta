@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
-export const TopicContext = createContext('');
+export const TopicContext = createContext("");
 
 export const TopicContextProvider = (props) => {
   const [selectedTopic, setSelectedTopic] = useState({});
@@ -10,5 +10,5 @@ export const TopicContextProvider = (props) => {
     <TopicContext.Provider value={{ selectedTopic, setSelectedTopic, selectedMovieId, setSelectedMovieId }}>
       {props.children}
     </TopicContext.Provider>
-  )
-}
+  );
+};

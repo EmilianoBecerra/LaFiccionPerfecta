@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router";
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 import "./Topics.css";
 import NewTopic from "../topics-responses/NewTopic";
 
@@ -25,8 +25,9 @@ const Topics = ({ comments, theme, movieid }) => {
       </div>
       <section className="topicsBox">
         {
-          comments?.length === 0 || !comments ? <p className="noComments">No hay comentarios</p> :
-            comments?.map((discussion) => (
+          comments?.length === 0 || !comments
+            ? <p className="noComments">No hay comentarios</p>
+            : comments?.map((discussion) => (
               <Link to={`/pelicula/${movieid}/tema/${discussion._id}`} style={{ textDecoration: "none", color: "inherit", width: "400px" }} key={discussion._id}>
                 <article className="topicBox" >
                   <section className="titleTopic">
@@ -50,14 +51,14 @@ const Topics = ({ comments, theme, movieid }) => {
           }}
         >
           <Box className={`${theme} box`} sx={{
-            width: 360, height: 380,
+            width: 360, height: 380
           }}>
             <NewTopic id={id} handleClose={handleClose} />
           </Box>
         </Modal>
       </section>
     </section >
-  )
-}
+  );
+};
 
 export default Topics;

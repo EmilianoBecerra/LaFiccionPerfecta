@@ -9,8 +9,8 @@ const newMovieDetail = async (id) => {
       {
         headers: {
           Accept: "application/json",
-          Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
-        },
+          Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`
+        }
       }
     );
     return response.data;

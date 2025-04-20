@@ -11,8 +11,8 @@ export const getMovies = async (setInfoPages, page) => {
       {
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
-        },
+          Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`
+        }
       }
     );
 

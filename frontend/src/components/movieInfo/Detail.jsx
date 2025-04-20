@@ -1,4 +1,5 @@
-import "./Detail.css"
+import "./Detail.css";
+import React from "react";
 const Detail = ({ movie }) => {
   return (
     <section className="detailInfo">
@@ -13,9 +14,7 @@ const Detail = ({ movie }) => {
       <h5>Puntuación</h5>
       <p className="detailMovie">{movie.vote_average}</p>
     </section>
-  )
-}
-
+  );
+};
 
 export default Detail;
-

@@ -1,9 +1,9 @@
+import React, { useContext, useEffect, useState } from "react";
 import "./Movie.css";
 import { useParams } from "react-router";
-import findIdMovie from "../../services/findIdMovie"
-import { useContext, useEffect, useState } from "react";
+import findIdMovie from "../../services/findIdMovie";
 import newMovieDetail from "../../services/newMovieDetail";
-import getTopics from "../../services/getTopics"
+import getTopics from "../../services/getTopics";
 import Topics from "./Topics";
 import { Skeleton } from "@mui/material";
 import Cast from "./Cast";
@@ -11,8 +11,6 @@ import Crew from "./Crew";
 import Detail from "./Detail";
 import Genred from "./Genred";
 import { TopicContext } from "../../context/StorageContexto";
-
-
 
 const Movie = ({ theme }) => {
   sessionStorage.removeItem("topicName");
@@ -23,7 +21,7 @@ const Movie = ({ theme }) => {
   const [completeOverview, setCompleteOverview] = useState(false);
   const [typeInfoMovie, setTypeInfoMovie] = useState("crew");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  /*  const [error, setError] = useState(null); */
   const { setSelectedMovieId } = useContext(TopicContext);
 
   useEffect(() => {
@@ -35,49 +33,45 @@ const Movie = ({ theme }) => {
         setMovie(data);
         setMovieDetail(dataDetail);
         setComments(topicsMovie);
-        setSelectedMovieId(data.id);
-        sessionStorage.setItem("movieName", data.title)
+        sessionStorage.setItem("movieName", data.title);
       } catch (err) {
         console.log(err);
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchMovie();
+  }, [params.id]);
 
-  }, [params.id])
+  useEffect(() => {
+    setSelectedMovieId(movie.id);
+  }, [movie]);
 
   const handleClick = (value) => {
     setTypeInfoMovie(value);
-  }
+  };
 
   const renderSection = () => {
     switch (typeInfoMovie) {
       case "cast":
-        return <Cast movieDetail={movieDetail} />
-        break;
+        return <Cast movieDetail={movieDetail} />;
       case "crew":
-        return <Crew movieDetail={movieDetail} />
-        break;
+        return <Crew movieDetail={movieDetail} />;
       case "detail":
-        return <Detail movie={movie} />
-        break;
+        return <Detail movie={movie} />;
       case "genred":
-        return <Genred movie={movie} />
-        break;
+        return <Genred movie={movie} />;
       default:
-        return <Cast movieDetail={movieDetail} />
-        break;
+        return <Cast movieDetail={movieDetail} />;
     }
-  }
+  };
   return (
     <main className="Movie">
-      {loading ?
-        <>
+      {loading
+        ? <>
           <Skeleton width={208} height={324} variant="rectangular" className="skeleton" sx={{ display: "flex" }} />
         </>
-        :
-        <>
+        : <>
           <section className="movie">
             <img src={
               movie.poster_path === null
@@ -88,15 +82,13 @@ const Movie = ({ theme }) => {
               <h2>{movie.title}</h2>
               {
                 movie.poster_path
-                  ?
-                  <p>
+                  ? <p>
                     {!completeOverview
                       ? movie?.overview?.slice(0, 327)
                       : movie.overview
                     }
                     {!completeOverview && movie.overview?.length > 327
-                      ?
-                      <span onClick={() => setCompleteOverview((prevValue) => !prevValue)}>
+                      ? <span onClick={() => setCompleteOverview((prevValue) => !prevValue)}>
                         {completeOverview ? "ver menos" : " ver mas"}
                       </span>
                       : ""
@@ -123,8 +115,7 @@ const Movie = ({ theme }) => {
         </>
       }
     </main>
-
-  )
-}
+  );
+};
 
 export default Movie;

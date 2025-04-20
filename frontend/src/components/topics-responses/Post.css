@@ -67,4 +67,9 @@
   overflow-wrap: break-word;
 }
 
+.autorName{
+  font-size: var(--font-subTitle-size-mobile);
+  font-weight: 600;
+}
+
 
