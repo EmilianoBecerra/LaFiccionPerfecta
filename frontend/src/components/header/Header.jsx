@@ -1,22 +1,28 @@
 import "./Header.css";
 import React from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 export default function Header ({
   sendData
 }) {
   const storage = window.localStorage;
   const theme = storage.getItem("theme") || "light";
+  const locationPath = useLocation();
 
   const handleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     storage.setItem("theme", newTheme);
     sendData(newTheme);
   };
+
+  const handleClickReload = () => {
+    return location.reload();
+  };
+
   return (
     <header>
       <Link to={"/"} className="Link">
-        <h1 className={`${theme}`}>
+        <h1 className={`${theme}`} onClick={locationPath.pathname === "/" ? handleClickReload : null}>
           LaFiccionPerfecta
         </h1>
       </Link>

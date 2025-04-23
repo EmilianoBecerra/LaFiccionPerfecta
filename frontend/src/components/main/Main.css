@@ -1,9 +1,9 @@
-.Main {
+main {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-flow: column nowrap;
+  justify-content: start;
   align-items: center;
-  flex: 1;
+  min-height: calc(100vh - 120px);
 }
 
 .Main hr {
@@ -13,6 +13,11 @@
 
 .dark {
   color: white;
+}
+
+.dark .Main {
+  min-height: calc(100vh - 120px);
+  flex: 1;
 }
 
 .Main input {
@@ -64,9 +69,10 @@
 }
 
 .MuiPagination-root button {
-  font-size: var(--font-text-size-mobile);
-  margin-top: 10px;
+  font-size: calc(var(--font-text-size-mobile) - 1px);
+  margin-top: 20px;
   padding: 0;
+  background: #fb7b03;
 }
 
 .dark .MuiPagination-root button {
@@ -82,70 +88,3 @@
   color: white;
 }
 
-.Skeleton {
-  background-color: red;
-  animation-name: fadeIn;
-}
-
-@media only screen and (min-width: 750px) and (max-width: 1024px) {
-
-  .introduction h2 {
-    font-size: var(--font-subTitle-size-desktop);
-  }
-
-  .introduction p {
-    font-size: 1rem;
-  }
-
-  .movies {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1px;
-  }
-
-  .dark .MuiPagination-root button {
-    font-size: 1.2rem;
-    margin: 16px;
-  }
-}
-
-@media screen and (min-width: 1600px)and (max-width:10000px) {
-
-  .introduction h2 {
-    font-size: var(--font-subTitle-size-desktop);
-  }
-
-  .introduction p {
-    font-size: var(--font-text-size-desktop);
-    width: 30%;
-  }
-
-  .movies {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 3em;
-  }
-
-  .cardMovie {
-    height: fit-content;
-  }
-
-  .posterMovie:hover {
-    border-radius: 8px;
-    border: 3px solid blueviolet;
-  }
-
-  .MuiSkeleton-fitContent {
-    border-radius: 12px;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}

@@ -14,6 +14,8 @@
   --font-title: "Merriweather", serif;
   --color-orange: #fb7b03;
   --color-text-error : rgba(128, 128, 128, 0.205);
+  --bg-black: rgba(0, 0, 0, 0.137);
+  --bg-white: rgba(255, 255, 255, 0.226);
 }
 
 * {

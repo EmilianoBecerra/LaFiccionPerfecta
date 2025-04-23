@@ -3,7 +3,7 @@ import axios from "axios";
 const findByIdTopic = async (id) => {
   try {
     const response = await axios.get(
-      `https://laficcionperfecta.onrender.com/api/peliculas/${id}/temas`,
+      `${process.env.REACT_APP_URL_SERV}/peliculas/${id}/temas`,
       {
         headers: {
           accept: "application/json"

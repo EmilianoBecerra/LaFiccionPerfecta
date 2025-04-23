@@ -8,12 +8,12 @@
   font-size: var(--font-text-size-mobile);
   padding: 3px;
   margin: 2px;
-  background-color: rgba(128, 128, 128, 0.205);
+  background-color: var(--bg-black);
   border-radius: 3px;
   cursor: pointer;
 }
 
 .dark .castInfo p {
-  background-color: rgba(226, 226, 226, 0.205);
+  background-color: var(--bg-white);
 
 }

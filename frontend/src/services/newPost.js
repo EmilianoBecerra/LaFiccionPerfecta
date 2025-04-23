@@ -10,7 +10,7 @@ const newPost = async (id, title, message) => {
       },
       {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "multipart/form-data"
         }
       }
     );

@@ -3,7 +3,7 @@ import axios from "axios";
 const getResponses = async (id) => {
   try {
     const response = await axios.get(
-      `https://laficcionperfecta.onrender.com/api/temas/${id}/comentarios`,
+      `${process.env.REACT_APP_URL_SERV}/temas/${id}/comentarios`,
       {
         headers: {
           accept: "application/json"

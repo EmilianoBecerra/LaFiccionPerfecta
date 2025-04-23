@@ -66,39 +66,45 @@ const Movie = ({ theme }) => {
     }
   };
   return (
-    <main className="Movie">
-      {loading
-        ? <>
-          <Skeleton width={208} height={324} variant="rectangular" className="skeleton" sx={{ display: "flex" }} />
-        </>
-        : <>
-          <section className="movie">
-            <img src={
-              movie.poster_path === null
-                ? "./img/imgnull.webp"
-                : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-            } alt={`poster de la pelicula ${movie.original_title}`} />
-            <article className="overview">
-              <h2>{movie.title}</h2>
+    <section className="Movie">
+      <section className="movie">
+        {
+          !loading
+            ? <img src=
               {
-                movie.poster_path
-                  ? <p>
-                    {!completeOverview
-                      ? movie?.overview?.slice(0, 327)
-                      : movie.overview
-                    }
-                    {!completeOverview && movie.overview?.length > 327
-                      ? <span onClick={() => setCompleteOverview((prevValue) => !prevValue)}>
-                        {completeOverview ? "ver menos" : " ver mas"}
-                      </span>
-                      : ""
-                    }
-                  </p>
+                movie.poster_path === null
+                  ? "./img/imgnull.webp"
+                  : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              } alt={`poster de la pelicula ${movie.original_title}`} />
+            : <Skeleton variant="rectangular" width={208} height={320} sx={{ borderRadius: "5px" }}/>
+        }
+        <article className="overview">
+          {!loading
+            ? <h2>{movie.title}</h2>
+            : <Skeleton variant="rectangular" width={152} height={50} sx={{ marginBottom: "10px", borderRadius: "5px" }}/>
+          }
+          {!loading
+            ? <>
+              <p>
+                {!completeOverview
+                  ? movie?.overview?.slice(0, 260)
+                  : movie.overview
+                }
+                {!completeOverview && movie.overview?.length > 260
+                  ? <span onClick={() => setCompleteOverview((prevValue) => !prevValue)}>
+                    {completeOverview ? "ver menos" : " ver mas"}
+                  </span>
                   : ""
-              }
-            </article>
-          </section>
-          <div className="infoPersons">
+                }
+              </p>
+            </>
+            : <Skeleton variant="rectangular" width={152} height={250} sx={{ borderRadius: "5px" }} />
+          }
+        </article>
+      </section>
+      {
+        !loading
+          ? <div className="infoPersons">
             <ul>
               <li onClick={() => handleClick("crew")}>Equipo</li>
               <li onClick={() => handleClick("cast")}>Elenco</li>
@@ -111,10 +117,14 @@ const Movie = ({ theme }) => {
               }
             </div>
           </div>
-          <Topics comments={comments} theme={theme} movieid={movie?.id} />
-        </>
+          : <Skeleton variant="rectangular" width={"100%"} height={100} sx={{ marginTop: "10px", paddingRight: "20px", borderRadius: "5px" }}/>
       }
-    </main>
+      {
+        !loading
+          ? <Topics comments={comments} theme={theme} movieid={movie?.id} />
+          : <Skeleton variant="rectangular" width={"100%"} height={100} sx={{ marginTop: "10px", paddingRight: "20px", borderRadius: "5px" }}/>
+      }
+    </section >
   );
 };
 

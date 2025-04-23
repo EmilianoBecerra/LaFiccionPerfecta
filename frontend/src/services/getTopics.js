@@ -3,7 +3,7 @@ import axios from "axios";
 const getTopics = async (movieId) => {
   try {
     const response = await axios.get(
-      `https://laficcionperfecta.onrender.com/api/peliculas/${movieId}/temas`
+      `${process.env.REACT_APP_URL_SERV}/peliculas/${movieId}/temas`
     );
     return response.data;
   } catch (error) {

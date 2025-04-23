@@ -1,6 +1,7 @@
 .Movie {
   min-height: 100vh;
   max-width: 100%;
+  padding: 10px;
 }
 
 .movie {
@@ -12,11 +13,23 @@
   width: 13rem;
   height: 20rem;
   border-radius: 5px;
-  margin: 10px;
+  margin-right: 10px;
 }
 
 .infoMovie {
   display: flex;
+}
+
+.skeletonTitleOverview{
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: none;
+}
+
+.skeleton {
+  margin: 0;
+  padding: 0;
 }
 
 .h2 {
@@ -55,7 +68,7 @@
   cursor: pointer;
 }
 
-.infoPersons ul li:target {
+.infoPersons ul li:focus {
   color: var(--color-orange);
 }
 

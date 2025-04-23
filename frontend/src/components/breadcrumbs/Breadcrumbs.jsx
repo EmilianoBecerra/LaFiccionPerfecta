@@ -46,7 +46,7 @@ const Breadcrumbs = () => {
     <>
       {
         (movieName === null && location.pathname !== "/") || (location.pathname.includes("tema") && !selectedTopic.titulo)
-          ? <Skeleton variant={"rectangular"} sx={{ bgcolor: "white" }} />
+          ? <Skeleton variant={"rectangular"}/>
           : <section className="Breadcrumbs">
             {switchPathname()}
             </section>

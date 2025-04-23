@@ -38,7 +38,7 @@ export default function Main ({
     }
   }, [page]);
 
-  const { isError } = useGetSearchedMovies({
+  const { isError, isLoading } = useGetSearchedMovies({
     searchedMovieRef,
     searchedMovie,
     setMovies,
@@ -83,7 +83,7 @@ export default function Main ({
         y contanos tus teorías, inquietudes o los sentimientos que te produjo.
       </p>
       <div className={`movies ${themeStyle}`}>
-        {loading
+        {loading || isLoading
           ? eskeletonNum.map((skeletonIndex) => {
             return (
               <Skeleton
@@ -117,14 +117,16 @@ export default function Main ({
             );
           })}
       </div>
-      <Pagination
-        count={infoPages > 500 ? 500 : infoPages}
-        page={page}
-        color="primary"
-        variant="text"
-        className="pagination"
-        onChange={handlePagination}
-      />
+      { loading || !isLoading
+        ? <Pagination
+          count={infoPages > 500 ? 500 : infoPages}
+          page={page}
+          variant="text"
+          className="pagination"
+          onChange={handlePagination}
+        />
+        : <Skeleton width={"70%"} height={20}/>
+      }
     </main >
   );
 }

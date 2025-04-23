@@ -24,6 +24,7 @@ export const useGetSearchedMovies = ({
             setMovies(response.results);
             setInfoPages(response.total_pages);
           } catch (error) {
+            console.error(error);
             setIsError("Error al buscar las peliculas");
           } finally {
             setIsLoading(false);
@@ -35,5 +36,5 @@ export const useGetSearchedMovies = ({
     }, 500);
   }, [searchedMovie, searchedMovieRef, setMovies, setInfoPages, page]);
 
-  return { isLoading, isError, setInfoPages };
+  return { isLoading, isError };
 };

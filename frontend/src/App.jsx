@@ -20,28 +20,30 @@ function App () {
       <Header
         sendData={handleData}
       />
+      <main>
       <TopicContextProvider>
-        <Breadcrumbs/>
-      <Routes>
-        <Route path={"/"} element={
-          <Main
-            themeStyle={theme}
-          />} />
-        <Route
-          path={"/pelicula/:id"}
-          element={
-            <Movie theme={theme}/>
-          }
-        />
-        <Route
-          path={"/pelicula/:movieId/tema/:id"}
-          element={
-            <Post/>
-          }
-        />
-      </Routes>
-      <Footer />
+        <Breadcrumbs />
+        <Routes>
+          <Route path={"/"} element={
+            <Main
+              themeStyle={theme}
+            />} />
+          <Route
+            path={"/pelicula/:id"}
+            element={
+              <Movie theme={theme} />
+            }
+          />
+          <Route
+            path={"/pelicula/:movieId/tema/:id"}
+            element={
+              <Post />
+            }
+          />
+        </Routes>
       </TopicContextProvider>
+      </main>
+      <Footer />
     </div>
   );
 }
