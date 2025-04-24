@@ -20,7 +20,6 @@ function App () {
       <Header
         sendData={handleData}
       />
-      <main>
       <TopicContextProvider>
         <Breadcrumbs />
         <Routes>
@@ -42,7 +41,6 @@ function App () {
           />
         </Routes>
       </TopicContextProvider>
-      </main>
       <Footer />
     </div>
   );

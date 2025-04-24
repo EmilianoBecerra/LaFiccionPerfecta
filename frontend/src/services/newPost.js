@@ -3,14 +3,14 @@ import axios from "axios";
 const newPost = async (id, title, message) => {
   try {
     await axios.post(
-      `https://laficcionperfecta.onrender.com/api/peliculas/${id}/temas`,
+      `${process.env.REACT_APP_URL_SERV}/peliculas/${id}/temas`,
       {
         titulo: title,
         descripcion: message
       },
       {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "application/x-www-form-urlencoded"
         }
       }
     );

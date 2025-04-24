@@ -3,21 +3,19 @@ import "./Movie.css";
 import { useParams } from "react-router";
 import findIdMovie from "../../services/findIdMovie";
 import newMovieDetail from "../../services/newMovieDetail";
-import getTopics from "../../services/getTopics";
-import Topics from "./Topics";
+import { TopicContext } from "../../context/StorageContexto";
 import { Skeleton } from "@mui/material";
+import Topics from "./Topics";
 import Cast from "./Cast";
 import Crew from "./Crew";
 import Detail from "./Detail";
 import Genred from "./Genred";
-import { TopicContext } from "../../context/StorageContexto";
 
 const Movie = ({ theme }) => {
   sessionStorage.removeItem("topicName");
   const params = useParams();
   const [movie, setMovie] = useState({});
   const [movieDetail, setMovieDetail] = useState({});
-  const [comments, setComments] = useState(undefined);
   const [completeOverview, setCompleteOverview] = useState(false);
   const [typeInfoMovie, setTypeInfoMovie] = useState("crew");
   const [loading, setLoading] = useState(true);
@@ -29,10 +27,8 @@ const Movie = ({ theme }) => {
       try {
         const data = await findIdMovie(params.id);
         const dataDetail = await newMovieDetail(params.id);
-        const topicsMovie = await getTopics(params.id);
         setMovie(data);
         setMovieDetail(dataDetail);
-        setComments(topicsMovie);
         sessionStorage.setItem("movieName", data.title);
       } catch (err) {
         console.log(err);
@@ -76,12 +72,12 @@ const Movie = ({ theme }) => {
                   ? "./img/imgnull.webp"
                   : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
               } alt={`poster de la pelicula ${movie.original_title}`} />
-            : <Skeleton variant="rectangular" width={208} height={320} sx={{ borderRadius: "5px" }}/>
+            : <Skeleton animatio={"wave"} variant="rectangular" width={208} height={320} sx={theme === "dark" ? { borderRadius: "5px", bgcolor: "rgba(255, 255, 255, 0.226)" } : { borderRadius: "5px" }} />
         }
         <article className="overview">
           {!loading
             ? <h2>{movie.title}</h2>
-            : <Skeleton variant="rectangular" width={152} height={50} sx={{ marginBottom: "10px", borderRadius: "5px" }}/>
+            : <Skeleton animatio={"wave"} variant="rectangular" width={152} height={50} sx={theme === "dark" ? { borderRadius: "5px", bgcolor: "rgba(255, 255, 255, 0.226)", marginBottom: "10px" } : { borderRadius: "5px", marginBottom: "10px" }} />
           }
           {!loading
             ? <>
@@ -98,7 +94,7 @@ const Movie = ({ theme }) => {
                 }
               </p>
             </>
-            : <Skeleton variant="rectangular" width={152} height={250} sx={{ borderRadius: "5px" }} />
+            : <Skeleton animatio={"wave"} variant="rectangular" width={152} height={250} sx={theme === "dark" ? { borderRadius: "5px", bgcolor: "rgba(255, 255, 255, 0.226)" } : { borderRadius: "5px" }} />
           }
         </article>
       </section>
@@ -117,13 +113,9 @@ const Movie = ({ theme }) => {
               }
             </div>
           </div>
-          : <Skeleton variant="rectangular" width={"100%"} height={100} sx={{ marginTop: "10px", paddingRight: "20px", borderRadius: "5px" }}/>
+          : <Skeleton animatio={"wave"} variant="rectangular" width={"100%"} height={100} sx={theme === "dark" ? { borderRadius: "5px", bgcolor: "rgba(255, 255, 255, 0.226)", marginTop: "10px", paddingRight: "20px" } : { borderRadius: "5px", marginTop: "10px", paddingRight: "20px" }} />
       }
-      {
-        !loading
-          ? <Topics comments={comments} theme={theme} movieid={movie?.id} />
-          : <Skeleton variant="rectangular" width={"100%"} height={100} sx={{ marginTop: "10px", paddingRight: "20px", borderRadius: "5px" }}/>
-      }
+      <Topics theme={theme} movieid={movie?.id} />
     </section >
   );
 };

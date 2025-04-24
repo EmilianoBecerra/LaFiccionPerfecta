@@ -1,12 +1,18 @@
-import { Link, useLocation } from "react-router";
-import * as React from "react";
+import { Link, useLocation, useParams } from "react-router";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Topics.css";
 import NewTopic from "../topics-responses/NewTopic";
+import { Skeleton, Stack } from "@mui/material";
+import useGetTopics from "../../hooks/useGetTopics";
 
-const Topics = ({ comments, theme, movieid }) => {
-  const [open, setOpen] = React.useState(false);
+const Topics = ({ theme, movieid }) => {
+  const [open, setOpen] = useState(false);
+  const [topics, setTopics] = useState([]);
+  const params = useParams();
+
+  const { isLoading } = useGetTopics(params.id, setTopics);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -24,10 +30,10 @@ const Topics = ({ comments, theme, movieid }) => {
         <button onClick={handleOpen}>Nuevo Tema</button>
       </div>
       <section className="topicsBox">
-        {
-          comments?.length === 0 || !comments
+        {!isLoading
+          ? topics?.length === 0
             ? <p className="noComments">No hay comentarios</p>
-            : comments?.map((discussion) => (
+            : topics?.map((discussion) => (
               <Link to={`/pelicula/${movieid}/tema/${discussion._id}`} style={{ textDecoration: "none", color: "inherit", width: "400px" }} key={discussion._id}>
                 <article className="topicBox" >
                   <section className="titleTopic">
@@ -38,6 +44,12 @@ const Topics = ({ comments, theme, movieid }) => {
                 </article>
               </Link>
             ))
+          : <Stack>
+              <Skeleton width={"100%"} height={50}/>
+              <Skeleton width={"100%"} height={50}/>
+              <Skeleton width={"100%"} height={50}/>
+            </Stack>
+
         }
         <Modal
           open={open}

@@ -10,7 +10,6 @@ const NewTopic = ({ id, handleClose }) => {
     e.preventDefault();
     newPost(id, title, message);
     handleClose();
-    window.location.reload();
   };
 
   return (

@@ -98,7 +98,7 @@ export default function Main ({
             return (
               <Link to={`/pelicula/${movie.id}`} key={movie.id}>
                 {!loadedImages[movie.id] && (
-                  <Skeleton variant="rectangle" height={133} width={84} animatio={"wave"} />
+                  <Skeleton variant="rectangle" height={133} width={84} animatio={"wave"} sx={themeStyle === "dark" ? { bgcolor: "rgba(255, 255, 255, 0.226)", borderRadius: "5px" } : { borderRadius: "5px" }} />
                 )}
                 <img
                   src={
@@ -117,7 +117,7 @@ export default function Main ({
             );
           })}
       </div>
-      { loading || !isLoading
+      { (loading || !isLoading) && infoPages > 1
         ? <Pagination
           count={infoPages > 500 ? 500 : infoPages}
           page={page}
@@ -125,7 +125,7 @@ export default function Main ({
           className="pagination"
           onChange={handlePagination}
         />
-        : <Skeleton width={"70%"} height={20}/>
+        : <Skeleton width={"70%"} height={20} sx={infoPages < 2 ? { display: "none" } : { display: "block" }}/>
       }
     </main >
   );
