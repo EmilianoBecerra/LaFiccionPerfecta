@@ -13,32 +13,46 @@ const Breadcrumbs = () => {
     switch (true) {
       case location.pathname === "/":
         return (
-          <Link to={"/"} className="LINK focusSpan">
-            Inicio
-          </Link>);
+          <ol className="completeBreadcrumbs">
+            <li className="breadcrumbsText">
+              <Link to={"/"} className="LINK focusSpan">
+                Inicio
+              </Link>
+            </li>
+          </ol>
+        );
       case location.pathname.includes("/tema"):
         return (
-          <p>
-            <Link to={"/"} className="LINK">
-              Inicio
-            </Link> {">"}
-            <Link to={`/pelicula/${selectedMovieId}`} className="LINK">
-              {movieName !== "" && movieName.length > 21 ? `${movieName.slice(0, 20)}...` : movieName}
-            </Link> {">"}
-            <span className="focusSpan">
+          <ol className="completeBreadcrumbs">
+            <li className="breadcrumbsText">
+              <Link to={"/"} className="LINK">
+                Inicio &gt;
+              </Link>
+            </li>
+            <li className="breadcrumbsText">
+              <Link to={`/pelicula/${selectedMovieId}`} className="LINK">
+                {movieName !== "" && movieName.length > 21 ? `${movieName.slice(0, 20)}...` : movieName} &gt;
+              </Link>
+            </li>
+            <li className="nameTopic breadcrumbsText focusSpan">
               {selectedTopic.titulo !== "" && selectedTopic.titulo.length > 21 ? `${selectedTopic.titulo.slice(0, 20)}...` : selectedTopic.titulo}
-            </span>
-          </p>);
+            </li>
+          </ol >);
       case location.pathname.includes("/pelicula"):
         return (
-          <p>
-            < Link to={"/"} className="LINK" >
-              Inicio
-            </Link > {">"}
-            <span className="focusSpan">
-              {movieName !== "" && movieName.length > 21 ? `${movieName.slice(0, 20)}...` : movieName}
-            </span>
-          </p >
+          <ol className="completeBreadcrumbs">
+            <li className="breadcrumbsText">
+              < Link to={"/"} className="LINK" >
+                Inicio &gt;
+              </Link >
+            </li>
+            <li className="breadcrumbsText">
+              <p className="breadcrumbsText focusSpan">
+                {movieName !== "" && movieName.length > 21 ? `${movieName.slice(0, 20)}...` : movieName}
+              </p>
+            </li>
+
+          </ol>
         );
     }
   };

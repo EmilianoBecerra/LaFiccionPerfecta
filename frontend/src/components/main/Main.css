@@ -1,4 +1,4 @@
-main {
+.Main {
   display: flex;
   flex-flow: column nowrap;
   justify-content: start;
@@ -87,4 +87,3 @@ main {
 .dark .MuiPagination-root li div {
   color: white;
 }
-

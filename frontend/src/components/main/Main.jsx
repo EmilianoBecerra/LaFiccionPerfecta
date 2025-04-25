@@ -36,14 +36,15 @@ export default function Main ({
     if (searchedMovie === "") {
       fetchMovies();
     }
-  }, [page]);
+  }, [page, searchedMovieRef.current]);
 
   const { isError, isLoading } = useGetSearchedMovies({
     searchedMovieRef,
     searchedMovie,
     setMovies,
     setInfoPages,
-    page
+    page,
+    setSearchedMovie
   });
 
   const handlePagination = (e, newPage) => {
@@ -60,12 +61,14 @@ export default function Main ({
 
   const handleInput = (e) => {
     const movieName = e.target.value;
-    searchedMovieRef.current = movieName;
-    setSearchedMovie(movieName);
+    if (/^[\w-]+$/.test(movieName)) {
+      searchedMovieRef.current = movieName;
+      setSearchedMovie(movieName);
+    }
   };
 
   return (
-    <main className="Main">
+    <section className="Main">
       <hr />
       <input
         className="inputSearch"
@@ -74,8 +77,8 @@ export default function Main ({
         type="text"
         maxLength={20}
         max={2}
-        defaultValue={""}
         onChange={handleInput}
+        placeholder="Busca tu peli"
       />
       <h2>Donde el debate por el cine sucede </h2>
       <p>
@@ -94,7 +97,7 @@ export default function Main ({
               />
             );
           })
-          : movies.map((movie) => {
+          : movies?.map((movie) => {
             return (
               <Link to={`/pelicula/${movie.id}`} key={movie.id}>
                 {!loadedImages[movie.id] && (
@@ -117,7 +120,7 @@ export default function Main ({
             );
           })}
       </div>
-      { (loading || !isLoading) && infoPages > 1
+      {(loading || !isLoading) && infoPages > 1
         ? <Pagination
           count={infoPages > 500 ? 500 : infoPages}
           page={page}
@@ -125,8 +128,8 @@ export default function Main ({
           className="pagination"
           onChange={handlePagination}
         />
-        : <Skeleton width={"70%"} height={20} sx={infoPages < 2 ? { display: "none" } : { display: "block" }}/>
+        : <Skeleton width={"70%"} height={20} sx={infoPages < 2 ? { display: "none" } : { display: "block" }} />
       }
-    </main >
+    </section >
   );
 }

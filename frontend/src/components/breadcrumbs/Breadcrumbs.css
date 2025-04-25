@@ -1,23 +1,28 @@
-.focusSpan {
-  color: var(--color-orange);
+.Breadcrumbs{
+  width: 100%;
 }
-.Breadcrumbs {
-  padding: 0px 10px;
+
+.completeBreadcrumbs{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: baseline;
 }
-.Breadcrumbs p {
+
+.breadcrumbsText{
+  list-style: none;
+  margin-left: 2px;
   font-size: var(--font-text-size-mobile);
 }
 
-.Breadcrumbs .LINK {
-  font-size: var(--font-text-size-mobile);
-  text-decoration: none;
+.dark .LINK {
   color: white;
 }
 
-.Breadcrumbs .LINK.focusSpan {
-  color: var(--color-orange);
+.LINK {
+  text-decoration: none;
 }
 
-.light .Breadcrumbs .LINK {
-  color: black;
+.focusSpan {
+  color: var(--color-orange);
 }
