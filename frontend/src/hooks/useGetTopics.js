@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import getTopics from "../services/getTopics";
 
-const useGetTopics = (id, setTopics) => {
+const useGetTopics = (id, setTopics, isNewPostSuccessful) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -19,8 +19,8 @@ const useGetTopics = (id, setTopics) => {
         }
       };
       getTopicsResult();
-    }, [2000]);
-  }, [id]);
+    }, [500]);
+  }, [id, isNewPostSuccessful]);
   return { isLoading, isError };
 };
 

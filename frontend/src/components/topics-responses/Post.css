@@ -27,6 +27,11 @@
   overflow-wrap: break-word;
 }
 
+.descriptionTopic:first-letter {
+  text-transform: capitalize;
+}
+
+
 .countComment {
   align-self: end;
   font-size: calc(var(--font-text-size-mobile) - 3px);
@@ -36,6 +41,7 @@
 
 .commentBox {
   width: 100%;
+  padding: 5px;
 }
 
 .responseTopic {
@@ -50,7 +56,12 @@
 }
 
 .responseText {
-  font-size: calc(var(--font-text-size-mobile))
+  font-size: calc(var(--font-text-size-mobile));
+  margin: 10px;
+}
+
+.responseText:first-letter {
+  text-transform: capitalize;
 }
 
 .addResponse {
@@ -68,7 +79,8 @@
 }
 
 .autorName{
-  font-size: var(--font-subTitle-size-mobile);
+  font-size: calc(var(--font-text-size-mobile) + 0.05rem);
+  margin-bottom: 2px;
   font-weight: 600;
 }
 

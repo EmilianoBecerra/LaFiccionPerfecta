@@ -19,7 +19,6 @@ const Movie = ({ theme }) => {
   const [completeOverview, setCompleteOverview] = useState(false);
   const [typeInfoMovie, setTypeInfoMovie] = useState("crew");
   const [loading, setLoading] = useState(true);
-  /*  const [error, setError] = useState(null); */
   const { setSelectedMovieId } = useContext(TopicContext);
 
   useEffect(() => {
@@ -113,7 +112,7 @@ const Movie = ({ theme }) => {
               }
             </div>
           </div>
-          : <Skeleton animatio={"wave"} variant="rectangular" width={"100%"} height={100} sx={theme === "dark" ? { borderRadius: "5px", bgcolor: "rgba(255, 255, 255, 0.226)", marginTop: "10px", paddingRight: "20px" } : { borderRadius: "5px", marginTop: "10px", paddingRight: "20px" }} />
+          : <Skeleton animatio={"wave"} variant="rectangular" width={"100%"} height={150} sx={{ bgcolor: theme === "dark" ? "rgba(255, 255, 255, 0.226)" : " rgba(0, 0, 0, 0.137)", borderRadius: "5px", marginTop: "10px", paddingRight: "20px" }} />
       }
       <Topics theme={theme} movieid={movie?.id} />
     </section >

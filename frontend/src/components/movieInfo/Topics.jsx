@@ -1,5 +1,5 @@
 import { Link, useLocation, useParams } from "react-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Topics.css";
@@ -11,14 +11,19 @@ const Topics = ({ theme, movieid }) => {
   const [open, setOpen] = useState(false);
   const [topics, setTopics] = useState([]);
   const params = useParams();
+  const [isNewPostSuccessful, setIsNewPostSuccessful] = useState(false);
+  const { isLoading } = useGetTopics(params.id, setTopics, isNewPostSuccessful);
 
-  const { isLoading } = useGetTopics(params.id, setTopics);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    setIsNewPostSuccessful(false);
+  }, [topics.length]);
 
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -33,7 +38,7 @@ const Topics = ({ theme, movieid }) => {
         {!isLoading
           ? topics?.length === 0
             ? <p className="noComments">No hay comentarios</p>
-            : topics?.map((discussion) => (
+            : topics?.reverse().map((discussion) => (
               <Link to={`/pelicula/${movieid}/tema/${discussion._id}`} style={{ textDecoration: "none", color: "inherit", width: "400px" }} key={discussion._id}>
                 <article className="topicBox" >
                   <section className="titleTopic">
@@ -45,11 +50,10 @@ const Topics = ({ theme, movieid }) => {
               </Link>
             ))
           : <Stack>
-              <Skeleton width={"100%"} height={50}/>
-              <Skeleton width={"100%"} height={50}/>
-              <Skeleton width={"100%"} height={50}/>
-            </Stack>
-
+            <Skeleton width={"100%"} height={"60px"} sx={{ bgcolor: theme === "dark" ? "rgba(255, 255, 255, 0.226)" : "rgba(0, 0, 0, 0.137)" }} />
+            <Skeleton width={"100%"} height={"60px"} sx={{ bgcolor: theme === "dark" ? "rgba(255, 255, 255, 0.226)" : "rgba(0, 0, 0, 0.137)" }} />
+            <Skeleton width={"100%"} height={"60px"} sx={{ bgcolor: theme === "dark" ? "rgba(255, 255, 255, 0.226)" : "rgba(0, 0, 0, 0.137)" }} />
+          </Stack>
         }
         <Modal
           open={open}
@@ -65,7 +69,7 @@ const Topics = ({ theme, movieid }) => {
           <Box className={`${theme} box`} sx={{
             width: 360, height: 380
           }}>
-            <NewTopic id={id} handleClose={handleClose} />
+            <NewTopic id={id} handleClose={handleClose} setIsNewPostSuccessful={setIsNewPostSuccessful} />
           </Box>
         </Modal>
       </section>

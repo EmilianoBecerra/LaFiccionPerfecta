@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "./NewTopic.css";
 import newPost from "../../services/newPost";
 
-const NewTopic = ({ id, handleClose }) => {
+const NewTopic = ({ id, handleClose, setIsNewPostSuccessful }) => {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
-    newPost(id, title, message);
+    const status = await newPost(id, title, message);
+    setIsNewPostSuccessful(status >= 200 && status < 300);
     handleClose();
   };
 

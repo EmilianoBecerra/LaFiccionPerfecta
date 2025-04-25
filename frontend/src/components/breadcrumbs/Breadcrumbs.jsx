@@ -8,6 +8,7 @@ const Breadcrumbs = () => {
   const { selectedTopic, selectedMovieId } = useContext(TopicContext);
   const location = useLocation();
   const movieName = sessionStorage.getItem("movieName" || "");
+  const theme = localStorage.getItem("theme");
   const switchPathname = () => {
     switch (true) {
       case location.pathname === "/":
@@ -46,10 +47,10 @@ const Breadcrumbs = () => {
     <>
       {
         (movieName === null && location.pathname !== "/") || (location.pathname.includes("tema") && !selectedTopic.titulo)
-          ? <Skeleton variant={"rectangular"}/>
+          ? <Skeleton variant={"rectangular"} animation={"pulse"} sx={{ bgcolor: theme === "dark" ? "rgba(255, 255, 255, 0.226)" : "rgba(0, 0, 0, 0.137)", borderRadius: "5px", width: "70%" }} />
           : <section className="Breadcrumbs">
             {switchPathname()}
-            </section>
+          </section>
       }
     </>
   );
