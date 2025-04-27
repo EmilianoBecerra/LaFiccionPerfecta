@@ -12,28 +12,26 @@ export const useGetSearchedMovies = ({
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (
-        searchedMovieRef.current !== "" &&
-        searchedMovieRef.current === searchedMovie
-      ) {
-        const fetchSearchedMovies = async () => {
-          try {
-            setIsLoading(true);
-            const response = await searchMovie(searchedMovie, page);
-            setMovies(response.results);
-            setInfoPages(response.total_pages);
-          } catch (error) {
-            console.error(error);
-            setIsError("Error al buscar las peliculas");
-          } finally {
-            setIsLoading(false);
-          }
-        };
+    if (searchedMovie.trim() === "") return;
+    const fetchSearchedMovies = async () => {
+      try {
+        setIsLoading(true);
+        const response = await searchMovie(searchedMovie, page);
+        setMovies(response.results);
+        setInfoPages(response.total_pages);
+      } catch (error) {
+        console.error(error);
+        setIsError("Error al buscar las peliculas");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    const delayDebounce = setTimeout(() => {
+      if (searchedMovieRef.current === searchedMovie) {
         fetchSearchedMovies();
       }
     }, 700);
-  }, [searchedMovie, searchedMovieRef, setMovies, setInfoPages, page]);
-
+    return () => clearTimeout(delayDebounce);
+  }, [searchedMovie, searchedMovieRef]);
   return { isLoading, isError };
 };

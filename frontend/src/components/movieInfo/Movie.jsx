@@ -5,13 +5,13 @@ import findIdMovie from "../../services/findIdMovie";
 import newMovieDetail from "../../services/newMovieDetail";
 import { TopicContext } from "../../context/StorageContexto";
 import { Skeleton } from "@mui/material";
-import Topics from "./Topics";
+import Topics from "../topics-responses/Topics";
 import Cast from "./Cast";
 import Crew from "./Crew";
 import Detail from "./Detail";
 import Genred from "./Genred";
 
-const Movie = ({ theme }) => {
+const Movie = ({ theme, comments }) => {
   sessionStorage.removeItem("topicName");
   const params = useParams();
   const [movie, setMovie] = useState({});
@@ -114,7 +114,7 @@ const Movie = ({ theme }) => {
           </div>
           : <Skeleton animatio={"wave"} variant="rectangular" width={"100%"} height={150} sx={{ bgcolor: theme === "dark" ? "rgba(255, 255, 255, 0.226)" : " rgba(0, 0, 0, 0.137)", borderRadius: "5px", marginTop: "10px", paddingRight: "20px" }} />
       }
-      <Topics theme={theme} movieid={movie?.id} />
+      <Topics theme={theme} movieid={movie?.id} comments={comments}/>
     </section >
   );
 };

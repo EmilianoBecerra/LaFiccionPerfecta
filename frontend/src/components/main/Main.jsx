@@ -19,24 +19,22 @@ export default function Main ({
   const eskeletonNum = [...Array(20).keys()];
   const [searchedMovie, setSearchedMovie] = useState("");
   const searchedMovieRef = useRef("");
-
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await getMovies(setInfoPages, page);
-        setMovies(data.results);
-        setInfoPages(data.total_pages);
-        setPage(data.page);
-      } catch (err) {
-        setError("Error al obtener las peliculas");
-      } finally {
-        setLoading(false);
-      }
-    };
-    if (searchedMovie === "") {
-      fetchMovies();
+    fetchMovies();
+  }, []);
+
+  const fetchMovies = async () => {
+    try {
+      const data = await getMovies(setInfoPages, page);
+      setMovies(data.results);
+      setInfoPages(data.total_pages);
+      setPage(data.page);
+    } catch (err) {
+      setError("Error al obtener las peliculas");
+    } finally {
+      setLoading(false);
     }
-  }, [page, searchedMovieRef.current]);
+  };
 
   const { isError, isLoading } = useGetSearchedMovies({
     searchedMovieRef,
@@ -47,26 +45,30 @@ export default function Main ({
     setSearchedMovie
   });
 
-  const handlePagination = (e, newPage) => {
-    setPage(newPage);
-  };
-
-  if (isError) {
-    return <p className="error-message">${error}</p>;
-  }
-
-  const handleImageLoad = (id) => {
-    setLoadedImages((prev) => ({ ...prev, [id]: true }));
-  };
-
   const handleInput = (e) => {
     const movieName = e.target.value;
+    if (movieName === "") {
+      searchedMovieRef.current = "";
+      setSearchedMovie("");
+      fetchMovies();
+    }
     if (/^[\w-]+$/.test(movieName)) {
       searchedMovieRef.current = movieName;
       setSearchedMovie(movieName);
     }
   };
 
+  const handlePagination = (e, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleImageLoad = (id) => {
+    setLoadedImages((prev) => ({ ...prev, [id]: true }));
+  };
+
+  if (isError) {
+    return <p className="error-message">${error}</p>;
+  }
   return (
     <section className="Main">
       <hr />
@@ -76,7 +78,6 @@ export default function Main ({
         name="inputSearch"
         type="text"
         maxLength={20}
-        max={2}
         onChange={handleInput}
         placeholder="Busca tu peli"
       />

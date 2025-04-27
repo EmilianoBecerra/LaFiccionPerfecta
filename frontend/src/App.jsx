@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import Footer from "./components/footer/Footer";
 import { Route, Routes } from "react-router";
 import Movie from "./components/movieInfo/Movie";
-import Post from "./components/topics-responses/Post";
+import Comments from "./components/topics-responses/Comments";
 import { TopicContextProvider } from "./context/StorageContexto";
 import Breadcrumbs from "./components/breadcrumbs/Breadcrumbs";
 
@@ -37,7 +37,7 @@ function App () {
             <Route
               path={"/pelicula/:movieId/tema/:id"}
               element={
-                <Post />
+                <Comments />
               }
             />
           </Routes>

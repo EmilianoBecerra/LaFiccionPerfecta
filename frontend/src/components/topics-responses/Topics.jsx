@@ -1,11 +1,12 @@
 import { Link, useLocation, useParams } from "react-router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Topics.css";
-import NewTopic from "../topics-responses/NewTopic";
+import NewTopic from "../forms/NewTopic";
 import { Skeleton, Stack } from "@mui/material";
 import useGetTopics from "../../hooks/useGetTopics";
+import { TopicContext } from "../../context/StorageContexto";
 
 const Topics = ({ theme, movieid }) => {
   const [open, setOpen] = useState(false);
@@ -13,7 +14,9 @@ const Topics = ({ theme, movieid }) => {
   const params = useParams();
   const [isNewPostSuccessful, setIsNewPostSuccessful] = useState(false);
   const { isLoading } = useGetTopics(params.id, setTopics, isNewPostSuccessful);
-
+  const { comments } = useContext(TopicContext);
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
   const handleOpen = () => {
     setOpen(true);
   };
@@ -24,9 +27,6 @@ const Topics = ({ theme, movieid }) => {
   useEffect(() => {
     setIsNewPostSuccessful(false);
   }, [topics.length]);
-
-  const location = useLocation();
-  const id = location.pathname.split("/")[2];
 
   return (
     <section className="Topics">
@@ -43,9 +43,13 @@ const Topics = ({ theme, movieid }) => {
                 <article className="topicBox" >
                   <section className="titleTopic">
                     <h5>{discussion.titulo}</h5>
-                    <p>Comentar</p>
                   </section>
                   <p className="comment">{discussion?.descripcion}</p>
+                  <div className="divDiscussionCount">
+                  <img src={theme === "dark" ? "/img/discussionWhite.png" : "/img/discussion.png"} alt="icon discussions count" className="discussionsCount"/>
+                  <p>{comments}</p>
+                  <p className="addComments">+</p>
+                  </div>
                 </article>
               </Link>
             ))

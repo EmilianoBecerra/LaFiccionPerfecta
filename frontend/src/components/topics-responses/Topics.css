@@ -64,11 +64,22 @@
   font-weight: bold;
 }
 
-.comment {
+.boxAddComments{
+  border: 1px bold var(--color-orange);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addComments {
   font-size: var(--font-text-size-mobile);
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  text-align: center;
+  color: var(--color-orange);
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .box {
@@ -86,4 +97,16 @@
 .dark.box {
   background-color: #000;
   border: var(--border-white);
+}
+
+.divDiscussionCount {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: end;
+  align-items: center;
+}
+
+.divDiscussionCount p {
+  margin: 3px;
 }

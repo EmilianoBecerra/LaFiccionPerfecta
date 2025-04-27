@@ -1,19 +1,21 @@
-import { useParams } from "react-router";
-import "./Post.css";
+import { useLocation, useParams } from "react-router";
+import "./Comments.css";
 import React, { useContext, useEffect, useState } from "react";
 import findByIdTopic from "../../services/findIdTopic";
 import { TopicContext } from "../../context/StorageContexto";
-import NewResponse from "./NewResponse";
+import NewResponse from "../forms/NewResponse";
 import { Box, Modal, Skeleton, Stack } from "@mui/material";
 import useGetComments from "../../hooks/useGetComments";
 
-const Post = () => {
+const Comments = () => {
   const params = useParams();
   const [topicMovie, setTopicMovie] = useState({});
   const [responses, setResponses] = useState([]);
   const theme = localStorage.getItem("theme");
+  const location = useLocation();
+  console.log(location);
 
-  const { setSelectedTopic, setSelectedMovieId } = useContext(TopicContext);
+  const { setSelectedTopic, setSelectedMovieId, setComments } = useContext(TopicContext);
 
   useEffect(() => {
     const fetchTopics = async () => {
@@ -30,6 +32,7 @@ const Post = () => {
     };
     fetchTopics();
   }, [params.movieId, params.id, setSelectedTopic]);
+
   const { isLoading, isError } = useGetComments(params.id, setResponses);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -38,7 +41,11 @@ const Post = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
+  if (responses.length > 0) {
+    setComments(responses.length);
+  } else {
+    setComments(0);
+  }
   return (
     <section className="CommentsTopic">
       {!isLoading
@@ -96,4 +103,4 @@ const Post = () => {
     </section>
   );
 };
-export default Post;
+export default Comments;
