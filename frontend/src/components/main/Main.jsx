@@ -21,7 +21,7 @@ export default function Main ({
   const searchedMovieRef = useRef("");
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [page, infoPages]);
 
   const fetchMovies = async () => {
     try {

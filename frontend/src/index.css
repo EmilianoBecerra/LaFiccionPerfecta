@@ -11,9 +11,12 @@
   --font-text-size-mobile: 0.8rem;
   --font-text: "Poppins", sans-serif;
   --font-title-size: 1.4rem;
+  --font-title-size-desktop: 2rem;
   --font-title: "Merriweather", serif;
   --color-orange: #fb7b03;
   --color-text-error : rgba(128, 128, 128, 0.205);
+  --font-text-footer : 0.6rem;
+  --font-text-footer-desktop: 0.8rem;
   --bg-black: rgba(0, 0, 0, 0.137);
   --bg-white: rgba(255, 255, 255, 0.226);
 }

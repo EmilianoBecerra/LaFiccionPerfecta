@@ -8,16 +8,11 @@
 
 .Main hr {
   width: 95%;
-  margin: 4px 0px;
+  margin: 2px 0px;
 }
 
 .dark {
   color: white;
-}
-
-.dark .Main {
-  min-height: calc(100vh - 120px);
-  flex: 1;
 }
 
 .Main input {
@@ -31,7 +26,8 @@
 }
 
 .Main input:focus {
-  outline: 2px solid var(--verde-oscuro);
+  outline: 2px solid var(--color-orange);
+  border: none;
 }
 
 .Main h2 {
@@ -86,4 +82,42 @@
 
 .dark .MuiPagination-root li div {
   color: white;
+}
+
+@media screen and (min-width:900px) {
+  .Main {
+    width: 100%;
+  }
+
+  .Main hr {
+    width: 98%;
+  }
+
+  .Main input {
+    width: 30%;
+    font-size: var(--font-text-size-desktop);
+    margin: 2px 0px;
+  }
+
+  .Main h2 {
+    font-size: var(--font-subTitle-size-desktop);
+    text-transform: uppercase;
+  }
+
+  .Main p {
+    font-size: var(--font-text-size-desktop);
+  }
+
+  .movies {
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 0.8fr;
+    grid-gap: 16px;
+  }
+
+  .posterMovie {
+    width: 9rem;
+    height: 15rem;
+    border-radius: var(--button-border-radius);
+  }
+
 }

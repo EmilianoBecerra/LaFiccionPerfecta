@@ -8,17 +8,32 @@ header {
 }
 
 h1 {
-  color: #f4f4f4;
+  color: black;
   font-family: var(--font-title);
   font-size: var(--font-title-size);
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.light h1 {
-  color: #000000;
+.dark h1 {
+  color: white;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .Link {
   text-decoration: none;
+}
+
+@media screen and (min-width: 900px) {
+  header {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: var(--font-title-size-desktop);
+  }
+
+  .iconoTema {
+    width: 32px;
+    height: 32px;
+  }
 }

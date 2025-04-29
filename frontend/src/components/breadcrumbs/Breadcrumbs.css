@@ -5,8 +5,9 @@
 .completeBreadcrumbs{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: start;
   align-items: baseline;
+  margin-left: 16px;
 }
 
 .breadcrumbsText{
@@ -28,4 +29,10 @@
 
 .focusSpan {
   color: var(--color-orange);
+}
+
+@media screen and (min-width: 900px) {
+  .Breadcrumbs {
+    font-size: var(--font-text-size-desktop);
+  }
 }
