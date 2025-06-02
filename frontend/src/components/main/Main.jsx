@@ -5,6 +5,7 @@ import Pagination from "@mui/material/Pagination";
 import { useGetSearchedMovies } from "../../hooks/useGetSearchedMovies.js";
 import { Skeleton } from "@mui/material";
 import { Link } from "react-router";
+import MovieWeek from "./MovieWeek.jsx";
 
 export default function Main ({
   themeStyle
@@ -20,21 +21,22 @@ export default function Main ({
   const [searchedMovie, setSearchedMovie] = useState("");
   const searchedMovieRef = useRef("");
   useEffect(() => {
-    fetchMovies();
-  }, [page, infoPages]);
-
-  const fetchMovies = async () => {
-    try {
-      const data = await getMovies(setInfoPages, page);
-      setMovies(data.results);
-      setInfoPages(data.total_pages);
-      setPage(data.page);
-    } catch (err) {
-      setError("Error al obtener las peliculas");
-    } finally {
-      setLoading(false);
+    if (loading || searchedMovie.length === 0) {
+      const fetchMovies = async () => {
+        try {
+          const data = await getMovies(setInfoPages, page);
+          setMovies(data.results);
+          setInfoPages(data.total_pages);
+          setPage(data.page);
+        } catch (err) {
+          setError("Error al obtener las peliculas");
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchMovies();
     }
-  };
+  }, [page, infoPages, searchedMovie]);
 
   const { isError, isLoading } = useGetSearchedMovies({
     searchedMovieRef,
@@ -50,7 +52,6 @@ export default function Main ({
     if (movieName === "") {
       searchedMovieRef.current = "";
       setSearchedMovie("");
-      fetchMovies();
     }
     if (/^[\w-]+$/.test(movieName)) {
       searchedMovieRef.current = movieName;
@@ -86,6 +87,9 @@ export default function Main ({
         Busca la pelicula que desees debatir, abrí un nuevo tema de discusión
         y contanos tus teorías, inquietudes o los sentimientos que te produjo.
       </p>
+      <section>
+        {window.innerWidth >= 900 ? <MovieWeek /> : ""}
+      </section>
       <div className={`movies ${themeStyle}`}>
         {loading || isLoading
           ? eskeletonNum.map((skeletonIndex) => {

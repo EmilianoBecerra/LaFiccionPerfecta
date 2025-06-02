@@ -5,7 +5,7 @@ export const TopicContext = createContext("");
 export const TopicContextProvider = (props) => {
   const [selectedTopic, setSelectedTopic] = useState({});
   const [selectedMovieId, setSelectedMovieId] = useState("");
-  const [comments, setComments] = useState(Number);
+  const [comments, setComments] = useState([]);
 
   return (
     <TopicContext.Provider value={{ selectedTopic, setSelectedTopic, selectedMovieId, setSelectedMovieId, comments, setComments }}>

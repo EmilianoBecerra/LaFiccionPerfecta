@@ -22,4 +22,15 @@ const mostrarComentarios = async (req, res) => {
   }
 };
 
-export { crearComentario, mostrarComentarios };
+
+
+const verTodosLosComentarios = async (req, res) => {
+  try {
+    const { idPelicula } = req.query;
+
+  } catch (error) {
+    
+  }
+}
+
+export { crearComentario, mostrarComentarios, verTodosLosComentarios };

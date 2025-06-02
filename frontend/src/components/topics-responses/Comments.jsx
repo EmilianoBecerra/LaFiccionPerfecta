@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 import "./Comments.css";
 import React, { useContext, useEffect, useState } from "react";
 import findByIdTopic from "../../services/findIdTopic";
@@ -12,10 +12,7 @@ const Comments = () => {
   const [topicMovie, setTopicMovie] = useState({});
   const [responses, setResponses] = useState([]);
   const theme = localStorage.getItem("theme");
-  const location = useLocation();
-  console.log(location);
-
-  const { setSelectedTopic, setSelectedMovieId, setComments } = useContext(TopicContext);
+  const { setSelectedTopic, setSelectedMovieId } = useContext(TopicContext);
 
   useEffect(() => {
     const fetchTopics = async () => {
@@ -41,11 +38,7 @@ const Comments = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  if (responses.length > 0) {
-    setComments(responses.length);
-  } else {
-    setComments(0);
-  }
+
   return (
     <section className="CommentsTopic">
       {!isLoading

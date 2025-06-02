@@ -17,6 +17,7 @@ export const useGetSearchedMovies = ({
       try {
         setIsLoading(true);
         const response = await searchMovie(searchedMovie, page);
+        console.log(response.results);
         setMovies(response.results);
         setInfoPages(response.total_pages);
       } catch (error) {
@@ -26,12 +27,13 @@ export const useGetSearchedMovies = ({
         setIsLoading(false);
       }
     };
+    console.log(searchedMovieRef.current === searchedMovie);
     const delayDebounce = setTimeout(() => {
       if (searchedMovieRef.current === searchedMovie) {
         fetchSearchedMovies();
       }
     }, 700);
     return () => clearTimeout(delayDebounce);
-  }, [searchedMovie, searchedMovieRef]);
+  }, [searchedMovie]);
   return { isLoading, isError };
 };

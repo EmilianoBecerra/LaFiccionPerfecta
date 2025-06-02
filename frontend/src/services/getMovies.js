@@ -15,7 +15,6 @@ export const getMovies = async (setInfoPages, page) => {
         }
       }
     );
-
     setInfoPages(response.data.total_pages);
     return response.data;
   } catch (error) {
